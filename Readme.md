@@ -25,3 +25,7 @@ Board B will receive data from the UART connection to Board A. Upon receiving da
 ## Communication of Data
 
 It should be noted that in order to transmit all the data from Board A to Board B there may have to be multiple packets sent. This will require design of a communication pattern to ensure all data is recieved before updating the LCD
+
+## Contributing
+
+Add all source files (*.c) to the src directory, and add all header files (*.h) to the inc directory.
