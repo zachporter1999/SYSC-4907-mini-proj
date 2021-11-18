@@ -3,11 +3,11 @@
 !theme plain
 
 component "1602 LCD Screen" as LCD
+component "IR Proximity Sensor" as IR
 
 package "MKL25Z Board A (Sensor Reader)" {
     component BoardA_UART
-    component BoardA_I2C
-    component BoardA_MMA
+    component BoardA_ADC
 
     interface BoardA_Code
 }
@@ -23,8 +23,8 @@ package "MKL25Z Board B (LCD Display)" {
 BoardA_UART <-r-> BoardB_UART : 1 to 1 relationship
 
 ' Board A layout
-BoardA_I2C <--> BoardA_MMA
-BoardA_I2C <--> BoardA_Code
+BoardA_ADC <-l-> IR
+BoardA_ADC <--> BoardA_Code
 BoardA_UART <--> BoardA_Code
 
 ' Board B layout

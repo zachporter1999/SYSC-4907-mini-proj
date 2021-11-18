@@ -3,12 +3,12 @@
 !theme plain
 
 participant Code
-participant I2C
+participant ADC
 participant UART
 participant UART_IRQ
 
 group Setup
-    Code -> I2C : Accelerometer Setup
+    Code -> ADC : IR Setup
 
     Code -> UART : UART + interrupt Setup
 end
@@ -23,7 +23,7 @@ end
 
 group Main Loop
 
-Code --> I2C : Read From Sensor
+Code --> ADC : Read From Sensor
 
 end
 
