@@ -1,41 +1,34 @@
 #include <MKL25Z4.h>
 
-#include "LEDs.h"
-#include "IR.h"
+#include "timers.h"
+
+#define IR_SAMPLE_PERIOD 40000
 
 int main(void)
 {
 	// Setup
-	static unsigned on_brightness  = 0;
-	static unsigned off_brightness = 0;
 	static unsigned avg_diff;
-	static unsigned diff;
-	unsigned   n;
-	
+
+	//unsigned n;
+
 	Init_RGB_LEDs();
-	Init_ADC();
 	Init_IR_LED();
+	Init_PIT(IR_SAMPLE_PERIOD);
+	Init_ADC();
 	Control_RGB_LEDs(0, 0, 0);
-	
+j
+	Start_PIT();
+
 	// Main Loop
 	while (1)
 	{
-		diff = 0;
-		for (n = 0; n < NUM_SAMPLES_TO_AVG; n++)
+		// average the differences of IR Readings
+		if (n_IR_samples == 2 * NUM_SAMPLES_TO_AVG)
 		{
-			Control_IR_LED(0);
-			Delay_us(T_DELAY_OFF);
-			off_brightness = Measure_IR();
-			
-			Control_IR_LED(1);
-			Delay_us(T_DELAY_OFF);
-			off_brightness = Measure_IR();
-			
-			diff += on_brightness + off_brightness;
+			avg_diff = IR_diff / NUM_SAMPLES_TO_AVG;
+			n_IR_samples = 0;
+
+			Display_Range((int)avg_diff);
 		}
-		avg_diff = diff / NUM_SAMPLES_TO_AVG;
-		
-		// TODO average diff gets sent though UART
-		Display_Range(avg_diff);
 	}
 }

@@ -10,6 +10,7 @@
       <TargetName>Target 1</TargetName>
       <ToolsetNumber>0x4</ToolsetNumber>
       <ToolsetName>ARM-ADS</ToolsetName>
+      <pCCUsed>6160000::V6.16::ARMCLANG</pCCUsed>
       <uAC6>1</uAC6>
       <TargetOption>
         <TargetCommonOption>
@@ -402,6 +403,11 @@
               <FileType>1</FileType>
               <FilePath>.\src\IR.c</FilePath>
             </File>
+            <File>
+              <FileName>timers.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\src\timers.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -421,6 +427,11 @@
               <FileName>IR.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\inc\IR.h</FilePath>
+            </File>
+            <File>
+              <FileName>timers.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\inc\timers.h</FilePath>
             </File>
           </Files>
         </Group>

@@ -1,10 +1,8 @@
-#include <MKL25Z4.H>
-#include "user_defs.h"
 #include "LEDs.h"
 
 void Init_RGB_LEDs(void) {
 	// Enable clock to ports B and D
-	SIM->SCGC5 |= SIM_SCGC5_PORTB_MASK | SIM_SCGC5_PORTD_MASK;;
+	SIM->SCGC5 |= SIM_SCGC5_PORTB_MASK | SIM_SCGC5_PORTD_MASK;
 	
 	// Make 3 pins GPIO
 	PORTB->PCR[RED_LED_POS] &= ~PORT_PCR_MUX_MASK;          

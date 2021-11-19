@@ -1,6 +1,12 @@
-#include <MKL25Z4.h>
+#include "IR.h"			
 
-#include "IR.h"									 
+int Threshold[NUM_RANGE_STEPS] = {34000, 27000, 20000, 14000, 8000, 0};
+const int Colors[NUM_RANGE_STEPS][3] = {{ 1, 1, 1}, // white
+										{ 1, 0, 1}, // magenta
+										{ 1, 0, 0}, // red
+										{ 1, 1, 0}, // yellow
+										{ 0, 0, 1}, // blue
+										{ 0, 1, 0}};// green
 
 void Init_ADC(void) {
 	
@@ -45,7 +51,10 @@ void Display_Range(int b) {
 		if (b > Threshold[i])
 			break;
 	}
-	Control_RGB_LEDs(Colors[i][RED], Colors[i][GREEN], Colors[i][BLUE]);
+	Control_RGB_LEDs(
+			(unsigned)Colors[i][RED],
+			(unsigned)Colors[i][GREEN],
+			(unsigned)Colors[i][BLUE]);
 }
 
 void Delay_us(volatile unsigned int time_del) {

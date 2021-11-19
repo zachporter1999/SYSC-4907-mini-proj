@@ -1,6 +1,9 @@
 #ifndef LEDS_H
 #define LEDS_H
 
+#include <MKL25Z4.h>
+#include "user_defs.h"
+
 // Freedom KL25Z LEDs
 #define RED_LED_POS (18)		// on port B
 #define GREEN_LED_POS (19)	// on port B
