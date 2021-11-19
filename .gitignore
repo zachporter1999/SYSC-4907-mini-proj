@@ -1,3 +1,4 @@
+.vscode
 Documentation/.metadata
-**.zaporter
-./Objects
+*/**.zaporter
+*/Objects
