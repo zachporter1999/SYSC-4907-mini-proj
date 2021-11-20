@@ -1,7 +1,6 @@
 #include "IR.h"
 
 int Threshold[NUM_RANGE_STEPS] = {34000, 27000, 20000, 14000, 8000, 0};
-
 const int Colors[NUM_RANGE_STEPS][3] = {{1, 1, 1},	// white
 										{1, 0, 1},	// magenta
 										{1, 0, 0},	// red
@@ -62,14 +61,17 @@ void Display_Range(int b)
 			break;
 	}
 	Control_RGB_LEDs(
-			(unsigned)Colors[i][RED],
-			(unsigned)Colors[i][GREEN],
-			(unsigned)Colors[i][BLUE]);
+		(unsigned)Colors[i][RED],
+		(unsigned)Colors[i][GREEN],
+		(unsigned)Colors[i][BLUE]);
 }
 
 void Delay_us(volatile unsigned int time_del)
 {
 	// This is a very imprecise and fragile implementation!
 	time_del = 9 * time_del + time_del / 2;
-	while (time_del--);
+	while (time_del--)
+	{
+		;
+	}
 }

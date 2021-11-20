@@ -6,7 +6,6 @@
 // I/O pin assignments
 #define IR_LED_POS (1) // on port B bit 1
 
-
 #define IR_PHOTOTRANSISTOR_CHANNEL (8) // on port B bit 0
 
 #define T_DELAY_ON (5000)
