@@ -20,12 +20,22 @@ Board A is responsible for reading new data from the onboard accelerometer. This
 
 ![Alt text](Documentation/out/puml/BoardB/BoardB.png?raw=true "Board B Sequence Diagram")
 
-Board B will receive data from the UART connection to Board A. Upon receiving data from Board A, Board B will need to update the LCD display to output the new data. 
+Board B will receive data from the UART connection to Board A. Upon receiving data from Board A, Board B will need to update the LCD display to output the new data.
 
 ## Communication of Data
 
 It should be noted that in order to transmit all the data from Board A to Board B there may have to be multiple packets sent. This will require design of a communication pattern to ensure all data is recieved before updating the LCD
 
+## Repository Structure
+
+This repo consists of Documentation, and a Keil workspace containing 2 Keil projects. In order to open this workspace, please open the workspace file "MiniProject.uvmpw". This will open both projects in keil.
+
+Each project exists in their own subdirectories "IR_Sender" for BoardA's project, and "LCD_Receiver" for BoardB's project. Each subdirectory has the source and include files for the corresponding project.
+
+See the diagram below for an overview of the repo's structure.
+
+![Alt text](Documentation/out/puml/Structure/Structure.png?raw=true "Repo Structure")
+
 ## Contributing
 
-Add all source files (*.c) to the src directory, and add all header files (*.h) to the inc directory.
+When adding source (_.c) or header files (_.h) place them in the Source or Include folders that correspond to the project they belong to.
