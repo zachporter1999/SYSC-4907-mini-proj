@@ -384,11 +384,6 @@
           <GroupName>Source Files</GroupName>
           <Files>
             <File>
-              <FileName>system_MKL25Z4.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\src\system_MKL25Z4.c</FilePath>
-            </File>
-            <File>
               <FileName>LEDs.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\src\LEDs.c</FilePath>
@@ -402,11 +397,6 @@
               <FileName>IR.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\src\IR.c</FilePath>
-            </File>
-            <File>
-              <FileName>timers.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\src\timers.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -427,11 +417,6 @@
               <FileName>IR.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\inc\IR.h</FilePath>
-            </File>
-            <File>
-              <FileName>timers.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\inc\timers.h</FilePath>
             </File>
           </Files>
         </Group>
