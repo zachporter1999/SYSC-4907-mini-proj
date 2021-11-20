@@ -383,14 +383,24 @@
           <GroupName>Source Files</GroupName>
           <Files>
             <File>
+              <FileName>system_MKL25Z4.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\src\system_MKL25Z4.c</FilePath>
+            </File>
+            <File>
+              <FileName>LEDs.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\src\LEDs.c</FilePath>
+            </File>
+            <File>
               <FileName>main.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\src\main.c</FilePath>
             </File>
             <File>
-              <FileName>placeholder.c</FileName>
+              <FileName>IR.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\src\placeholder.c</FilePath>
+              <FilePath>.\src\IR.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -398,9 +408,19 @@
           <GroupName>Include Files</GroupName>
           <Files>
             <File>
-              <FileName>placeholder.h</FileName>
+              <FileName>LEDs.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\inc\placeholder.h</FilePath>
+              <FilePath>.\inc\LEDs.h</FilePath>
+            </File>
+            <File>
+              <FileName>user_defs.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\inc\user_defs.h</FilePath>
+            </File>
+            <File>
+              <FileName>IR.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\inc\IR.h</FilePath>
             </File>
           </Files>
         </Group>
