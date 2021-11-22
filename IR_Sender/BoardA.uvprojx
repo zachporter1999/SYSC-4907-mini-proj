@@ -10,6 +10,7 @@
       <TargetName>Target 1</TargetName>
       <ToolsetNumber>0x4</ToolsetNumber>
       <ToolsetName>ARM-ADS</ToolsetName>
+      <pCCUsed>6160000::V6.16::ARMCLANG</pCCUsed>
       <uAC6>1</uAC6>
       <TargetOption>
         <TargetCommonOption>
@@ -109,11 +110,11 @@
         </CommonProperty>
         <DllOption>
           <SimDllName>SARMCM3.DLL</SimDllName>
-          <SimDllArguments>  </SimDllArguments>
+          <SimDllArguments></SimDllArguments>
           <SimDlgDll>DARMCM1.DLL</SimDlgDll>
           <SimDlgDllArguments>-pCM0+</SimDlgDllArguments>
           <TargetDllName>SARMCM3.DLL</TargetDllName>
-          <TargetDllArguments> </TargetDllArguments>
+          <TargetDllArguments></TargetDllArguments>
           <TargetDlgDll>TARMCM1.DLL</TargetDlgDll>
           <TargetDlgDllArguments>-pCM0+</TargetDlgDllArguments>
         </DllOption>
@@ -133,11 +134,11 @@
             <RunIndependent>0</RunIndependent>
             <UpdateFlashBeforeDebugging>1</UpdateFlashBeforeDebugging>
             <Capability>1</Capability>
-            <DriverSelection>-1</DriverSelection>
+            <DriverSelection>4096</DriverSelection>
           </Flash1>
           <bUseTDR>1</bUseTDR>
           <Flash2>BIN\UL2CM3.DLL</Flash2>
-          <Flash3></Flash3>
+          <Flash3>"" ()</Flash3>
           <Flash4></Flash4>
           <pFcarmOut></pFcarmOut>
           <pFcarmGrp></pFcarmGrp>
@@ -383,14 +384,19 @@
           <GroupName>Source Files</GroupName>
           <Files>
             <File>
+              <FileName>LEDs.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\src\LEDs.c</FilePath>
+            </File>
+            <File>
               <FileName>main.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\src\main.c</FilePath>
             </File>
             <File>
-              <FileName>placeholder.c</FileName>
+              <FileName>IR.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\src\placeholder.c</FilePath>
+              <FilePath>.\src\IR.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -398,9 +404,19 @@
           <GroupName>Include Files</GroupName>
           <Files>
             <File>
-              <FileName>placeholder.h</FileName>
+              <FileName>LEDs.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\inc\placeholder.h</FilePath>
+              <FilePath>.\inc\LEDs.h</FilePath>
+            </File>
+            <File>
+              <FileName>user_defs.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\inc\user_defs.h</FilePath>
+            </File>
+            <File>
+              <FileName>IR.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\inc\IR.h</FilePath>
             </File>
           </Files>
         </Group>
