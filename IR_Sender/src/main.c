@@ -1,5 +1,7 @@
+#include <MKL25Z4.h>
 #include "LEDs.h"
 #include "IR.h"
+#include "uart.h"
 
 #define IR_SAMPLE_PERIOD 40000
 
@@ -11,6 +13,7 @@ int main(void)
 	unsigned n;
 
 	Init_ADC();
+	Init_uart();
 	Init_RGB_LEDs();
 	Init_IR_LED();
 	Control_RGB_LEDs(0, 0, 0);
@@ -37,5 +40,7 @@ int main(void)
 
 		// light RGB LED according to range
 		Display_Range(avg_diff);
+		
+		uart_send((uint8_t)1);
 	}
 }
