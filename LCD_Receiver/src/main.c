@@ -21,6 +21,12 @@ static void LCD_Example(void) {
 	Print_LCD("Hello, World!");
 	Set_Cursor(0,1);
 	Print_LCD("Ready to Begin");
+	for(int i = 0; i < 1000; i++);
+	Clear_LCD();
+	Set_Cursor(0,0);
+	Print_LCD("helpppp");
+	for(int i = 0; i < 1000; i++);
+	
 }
 /*
 static void LCD_UARTout(int i) {
@@ -76,9 +82,9 @@ int main (void) {
 	char* charVal;
 	char tempVal;
 	
-	Init_UART2(9600);
+	Init_UART1(9600);
 	
-	int welcomeDelay = 10000;
+	int welcomeDelay = 100;
 
 	LCD_Example();
 	while (welcomeDelay > 0) welcomeDelay--;
