@@ -77,13 +77,24 @@ static void floatToString(float input, char* s, int dec) {
   MAIN function
  *----------------------------------------------------------------------------*/
 int main (void) {
-	uint8_t c;//, i;
+	char c;//, i;
 	//uint8_t buff[BUFF_SIZE];
 	char* charVal;
 	char tempVal;
 	
 	Init_UART1(9600);
 	
+	while(1) {
+		
+		c = (char)UART1_Receive_Poll();
+		Delay(10);
+		
+		/*
+		while (Get_Num_Rx_Chars_Available() == 0);
+		c = Get_Char();
+		*/
+	}
+	/*
 	int welcomeDelay = 100;
 
 	LCD_Example();
@@ -97,17 +108,18 @@ int main (void) {
 		//do {
 			while (Get_Num_Rx_Chars_Available() == 0);
 			c = Get_Char();
-			/*
 			buff[i++] = c;
 			buff[i] = '\0';
 			*/
-		tempVal = c+'0';
-		charVal = &tempVal;
+			/*
+			tempVal = c+'0';
+			charVal = &tempVal;
 			Clear_LCD();
 			Set_Cursor(0,0);
 			Print_LCD(charVal);
 		//} while (i<BUFF_SIZE);
-	}
+		*/
+	//}
 	
 	
 	
