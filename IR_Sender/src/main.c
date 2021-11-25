@@ -1,9 +1,17 @@
 #include <MKL25Z4.h>
+#include <stdio.h>
 #include "LEDs.h"
 #include "IR.h"
-#include "uart.h"
+#include "UART.h"
 
 #define IR_SAMPLE_PERIOD 40000
+
+static void Delay(uint32_t dly)
+{
+	volatile uint32_t t;
+	
+	for (t=dly*10000; t>0; t--);
+}
 
 int main(void)
 {
@@ -13,11 +21,11 @@ int main(void)
 	unsigned n;
 
 	Init_ADC();
-	Init_uart();
+	Init_UART1(300);
 	Init_RGB_LEDs();
 	Init_IR_LED();
-	Control_RGB_LEDs(0, 0, 0);
-
+	Control_RGB_LEDs(0, 0, 0);	
+	
 	while (1)
 	{
 		diff = 0;
@@ -41,6 +49,20 @@ int main(void)
 		// light RGB LED according to range
 		Display_Range(avg_diff);
 		
-		uart_send((uint8_t)1);
+		// uart_send((avg_diff >> 8) & 0xFF);
+		#if 1
+		
+		Q_Enqueue(&TxQ, (uint8_t)(avg_diff >> 8));
+		Q_Enqueue(&TxQ, (uint8_t)avg_diff);
+		if (!(UART1->C2 & UART_C2_TIE_MASK)) {
+			UART1->C2 |= UART_C2_TIE_MASK;
+		}
+		Delay(250);
+		#else
+		UART1_Transmit_Poll((uint8_t)(avg_diff >> 8));
+		//Delay(100);
+		UART1_Transmit_Poll((uint8_t)(avg_diff));
+		Delay(50);
+		#endif
 	}
 }

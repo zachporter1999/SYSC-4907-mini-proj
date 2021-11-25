@@ -399,9 +399,14 @@
               <FilePath>.\src\IR.c</FilePath>
             </File>
             <File>
-              <FileName>uart.c</FileName>
+              <FileName>queue.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\src\uart.c</FilePath>
+              <FilePath>.\src\queue.c</FilePath>
+            </File>
+            <File>
+              <FileName>UART.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\src\UART.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -424,9 +429,14 @@
               <FilePath>.\inc\IR.h</FilePath>
             </File>
             <File>
-              <FileName>uart.h</FileName>
+              <FileName>queue.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\inc\uart.h</FilePath>
+              <FilePath>.\inc\queue.h</FilePath>
+            </File>
+            <File>
+              <FileName>UART.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\inc\UART.h</FilePath>
             </File>
           </Files>
         </Group>
