@@ -16,9 +16,8 @@ extern uint8_t CR_received;
  *----------------------------------------------------------------------------*/
 int main (void) {
 	uint16_t i;
-	
-	//polling approach
 	/*
+	//polling approach
 	char bugger[16];
 	*/
 	
@@ -26,32 +25,38 @@ int main (void) {
 	char buff[BUFF_SIZE];
 	__enable_irq();
 	
-	Init_UART1(9600);
+	Init_UART1(300);
 	Init_LCD();
 	
 	while(1) {
-		
-		//polling approach
 		/*
-		c = UART1_Receive_Poll();
-		sprintf(bugger, "Value: %d", c);
+		//polling approach
+		i = 0;
+		i |= (uint16_t)(UART1_Receive_Poll() << 8);
+		i |= (uint8_t)UART1_Receive_Poll();
+		sprintf(bugger, "IR: %u", i);
 		Clear_LCD();
 		Set_Cursor(0,0);
 		Print_LCD(bugger);
+		Set_Cursor(0,1);
+		Print_LCD("Polling);
 		Delay(10);
 		*/
 		
 		//interrupt approach
-		if (Get_Num_Rx_Chars_Available() != 0) {
+		if (Get_Num_Rx_Chars_Available() >= 2) {
 			i = 0;
 			i |= (uint16_t)(Get_Char() << 8);
 			i |= (uint8_t)Get_Char();
-			sprintf(buff, "%u", i);
+			sprintf(buff, "IR: %u", i);
 			Clear_LCD();
 			Set_Cursor(0,0);
 			Print_LCD(buff);
+			Set_Cursor(0,1);
+			Print_LCD("Interrupt");
 			Delay(20);
 		}
+		
 	}
 }
 
