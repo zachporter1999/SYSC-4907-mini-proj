@@ -19,4 +19,6 @@
 #define GREEN (1)
 #define BLUE (2)
 
+#define BUS_CLOCK (24e6)
+
 #endif
