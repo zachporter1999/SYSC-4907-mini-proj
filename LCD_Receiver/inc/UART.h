@@ -18,7 +18,8 @@ uint32_t Get_Num_Rx_Chars_Available(void);
 uint8_t	Get_Char(void);
 
 
-extern Q_T Tx_Data, Rx_Data;
+extern Q_T TxQ, RxQ;
+extern uint8_t CR_received;
 
 #endif
 // *******************************ARM University Program Copyright © ARM Ltd 2013*************************************   

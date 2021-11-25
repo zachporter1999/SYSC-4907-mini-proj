@@ -23,7 +23,7 @@ void Init_UART1(uint32_t baud_rate) {
 	UART1->BDL = UART_BDL_SBR(divisor);
 	
 	// No parity, 8 bits, two stop bits, other settings;
-	UART1->C1 |= UARTLP_C1_PE_MASK; 
+	UART1->C1 |= UARTLP_C1_PE_MASK | UARTLP_C1_M_MASK; 
 	UART1->C1 |= UARTLP_C1_PT_MASK;
 	UART1->S2 = 0;
 	UART1->C3 = 0;
