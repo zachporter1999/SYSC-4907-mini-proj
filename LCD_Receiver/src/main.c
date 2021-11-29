@@ -27,6 +27,8 @@ int main (void) {
 	
 	Init_UART1(300);
 	Init_LCD();
+	Set_Cursor(0,0);
+		Print_LCD("bruh");
 	
 	while(1) {
 		/*
