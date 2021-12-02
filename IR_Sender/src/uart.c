@@ -1,9 +1,14 @@
-#include "UART.h"
+#include "uart.h"
+#include <stdint.h>
 
 Q_T TxQ, RxQ;
 uint8_t CR_received = 0;
 
-void Init_UART1(uint32_t baud_rate) {
+uart_transeiver_t uart0_transeiver;
+uart_transeiver_t uart1_transeiver;
+uart_transeiver_t uart2_transeiver;
+
+void Init_UART1(uint32_t baud_rate, size_t data_bytes, uart_transeiver_t* transeiver) {
 	uint32_t divisor;
 	
 	// enable clock to UART and Port E
@@ -18,7 +23,7 @@ void Init_UART1(uint32_t baud_rate) {
 	UART1->C2 &=  ~(UARTLP_C2_TE_MASK | UARTLP_C2_RE_MASK);
 		
 	// Set baud rate to baud rate
-	divisor = BUS_CLOCK/(baud_rate*16);
+	divisor = (uint32_t)BUS_CLOCK/(baud_rate*16);
 	UART1->BDH = UART_BDH_SBR(divisor>>8);
 	UART1->BDL = UART_BDL_SBR(divisor);
 	
@@ -29,6 +34,8 @@ void Init_UART1(uint32_t baud_rate) {
 	
 // Enable transmitter and receiver but not interrupts
 	UART1->C2 = UART_C2_TE_MASK | UART_C2_RE_MASK;
+
+	transeiver->bytes_per_data = data_bytes;
 	
 #if USE_UART_INTERRUPTS
 	NVIC_SetPriority(UART1_IRQn, 128); // 0, 64, 128 or 192
@@ -37,8 +44,50 @@ void Init_UART1(uint32_t baud_rate) {
 
 	UART1->C2 |= UART_C2_TIE_MASK | UART_C2_RIE_MASK;
 //	UART1->C2 |= UART_C2_RIE_MASK;
-	Q_Init(&TxQ);
-	Q_Init(&RxQ);
+	Q_Init(&transeiver->TxQ);
+	Q_Init(&transeiver->RxQ);
+#endif
+
+}
+
+void Init_UART2(uint32_t baud_rate, size_t data_bytes, uart_transeiver_t* transeiver) {
+	uint32_t divisor;
+	
+	// enable clock to UART and Port E
+	SIM->SCGC4 |= SIM_SCGC4_UART2_MASK;
+	SIM->SCGC5 |= SIM_SCGC5_PORTE_MASK;
+
+
+	// select UART pins
+	PORTE->PCR[22] = PORT_PCR_MUX(3);
+	PORTE->PCR[23] = PORT_PCR_MUX(3);
+	
+	UART2->C2 &=  ~(UARTLP_C2_TE_MASK | UARTLP_C2_RE_MASK);
+		
+	// Set baud rate to baud rate
+	divisor = (uint32_t)BUS_CLOCK/(baud_rate*16);
+	UART2->BDH = UART_BDH_SBR(divisor>>8);
+	UART2->BDL = UART_BDL_SBR(divisor);
+	
+	// No parity, 8 bits, two stop bits, other settings;
+	UART2->C1 = UART_C1_M_MASK | UART_C1_PE_MASK | UART_C1_PT_MASK; 
+	UART2->S2 = 0;
+	UART2->C3 = 0;
+	
+// Enable transmitter and receiver but not interrupts
+	UART2->C2 = UART_C2_TE_MASK | UART_C2_RE_MASK;
+
+	transeiver->bytes_per_data = data_bytes;
+	
+#if USE_UART_INTERRUPTS
+	NVIC_SetPriority(UART2_IRQn, 128); // 0, 64, 128 or 192
+	NVIC_ClearPendingIRQ(UART2_IRQn); 
+	NVIC_EnableIRQ(UART2_IRQn);
+
+	UART2->C2 |= UART_C2_TIE_MASK | UART_C2_RIE_MASK;
+//	UART2->C2 |= UART_C2_RIE_MASK;
+	Q_Init(&transeiver->TxQ);
+	Q_Init(&transeiver->RxQ);
 #endif
 
 }
