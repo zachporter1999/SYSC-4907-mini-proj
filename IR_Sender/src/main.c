@@ -3,8 +3,12 @@
 #include "LEDs.h"
 #include "IR.h"
 #include "UART.h"
+#include "LCD_4bit.h"
+#include "delay.h"
 
 #define IR_SAMPLE_PERIOD 40000
+#define UART_BAUDRATE 300
+#define LCD_EN
 
 static void Delay(uint32_t dly)
 {
@@ -19,7 +23,15 @@ int main(void)
 	static int avg_diff;
 	static int diff;
 	unsigned n;
+	// enable lcd module
+	#ifdef UART_EN
 
+	Init_LCD();	
+	Clear_LCD();
+	Set_Cursor(0, 0);
+	Print_LCD("Hello World");
+
+	#endif
 	Init_ADC();
 	Init_UART1(300);
 	Init_RGB_LEDs();
