@@ -11,7 +11,7 @@
 #define BUFF_SIZE (16)
 
 extern uint8_t CR_received;
-
+extern volatile unsigned send_button;
 
 
 /*----------------------------------------------------------------------------
@@ -28,8 +28,7 @@ int main (void) {
 	char buff[BUFF_SIZE];
 	__enable_irq();
 	
-	Init_5way_Switch();
-	
+	Init_4way_Switch();
 	
 	Init_UART1(300);
 	Init_LCD();
@@ -65,7 +64,7 @@ int main (void) {
 			Delay(20);
 		}
 		
-		
+		send_data(&uart1_transceiver, &send_button);
 	}
 }
 
