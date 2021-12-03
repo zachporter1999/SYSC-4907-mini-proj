@@ -21,12 +21,10 @@ int main(void)
 
 	//uart_transeiver_t uart1_transceiver;
   
-	#if 0
 	Init_LCD();	
 	Clear_LCD();
 	Set_Cursor(0, 0);
 	Print_LCD("Hello World");
-	#endif
 	
 	Init_ADC();
 	
@@ -65,6 +63,6 @@ int main(void)
 		send_data(&uart1_transceiver, &avg_diff);
 		#endif
 
-		Delay(250);
+		Delay(10);
 	}
 }
