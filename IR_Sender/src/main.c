@@ -3,16 +3,12 @@
 #include "LEDs.h"
 #include "IR.h"
 #include "UART.h"
+#include "LCD_4bit.h"
+#include "delay.h"
 
 #define UART_BAUDRATE 300
 #define IR_SAMPLE_PERIOD 40000
-
-static void Delay(uint32_t dly)
-{
-	volatile uint32_t t;
-	
-	for (t=dly*10000; t>0; t--);
-}
+#define UART_BAUDRATE 300
 
 int main(void)
 {
@@ -22,7 +18,12 @@ int main(void)
 	unsigned n;
 
 	uart_transeiver_t uart1_transceiver;
-
+  
+	Init_LCD();	
+	Clear_LCD();
+	Set_Cursor(0, 0);
+	Print_LCD("Hello World");
+	
 	Init_ADC();
 	uart1_transceiver = Init_UART1(UART_BAUDRATE, sizeof(uint16_t));
 	Init_RGB_LEDs();
