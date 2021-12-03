@@ -256,8 +256,13 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
+
+      <PathWithFileName>.\src\queue.c</PathWithFileName>
+      <FilenameWithoutPath>queue.c</FilenameWithoutPath>
+
       <PathWithFileName>.\src\switches.c</PathWithFileName>
       <FilenameWithoutPath>switches.c</FilenameWithoutPath>
+
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -268,8 +273,13 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
+
+      <PathWithFileName>.\src\switches.c</PathWithFileName>
+      <FilenameWithoutPath>switches.c</FilenameWithoutPath>
+
       <PathWithFileName>..\common\src\uart.c</PathWithFileName>
       <FilenameWithoutPath>uart.c</FilenameWithoutPath>
+
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -280,8 +290,13 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
+
+      <PathWithFileName>..\common\src\uart.c</PathWithFileName>
+      <FilenameWithoutPath>uart.c</FilenameWithoutPath>
+
       <PathWithFileName>..\common\src\queue.c</PathWithFileName>
       <FilenameWithoutPath>queue.c</FilenameWithoutPath>
+
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -336,8 +351,13 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
+
+      <PathWithFileName>.\inc\queue.h</PathWithFileName>
+      <FilenameWithoutPath>queue.h</FilenameWithoutPath>
+
       <PathWithFileName>.\inc\switches.h</PathWithFileName>
       <FilenameWithoutPath>switches.h</FilenameWithoutPath>
+
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -348,8 +368,13 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
+
+      <PathWithFileName>.\inc\switches.h</PathWithFileName>
+      <FilenameWithoutPath>switches.h</FilenameWithoutPath>
+
       <PathWithFileName>..\common\inc\uart.h</PathWithFileName>
       <FilenameWithoutPath>uart.h</FilenameWithoutPath>
+
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -360,8 +385,13 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
+
+      <PathWithFileName>..\common\inc\uart.h</PathWithFileName>
+      <FilenameWithoutPath>uart.h</FilenameWithoutPath>
+
       <PathWithFileName>..\common\inc\queue.h</PathWithFileName>
       <FilenameWithoutPath>queue.h</FilenameWithoutPath>
+
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>

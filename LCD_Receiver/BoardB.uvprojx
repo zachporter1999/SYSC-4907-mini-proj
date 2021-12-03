@@ -399,12 +399,16 @@
               <FilePath>..\common\src\LCD_4bit.c</FilePath>
             </File>
             <File>
+
+              <FileName>queue.c</FileName>
+
               <FileName>switches.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\src\switches.c</FilePath>
             </File>
             <File>
               <FileName>uart.c</FileName>
+
               <FileType>1</FileType>
               <FilePath>..\common\src\uart.c</FilePath>
             </File>
@@ -412,6 +416,11 @@
               <FileName>queue.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\common\src\queue.c</FilePath>
+            </File>
+            <File>
+              <FileName>uart.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\common\src\uart.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -434,12 +443,16 @@
               <FilePath>..\common\inc\delay.h</FilePath>
             </File>
             <File>
+
+              <FileName>queue.h</FileName>
+
               <FileName>switches.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\inc\switches.h</FilePath>
             </File>
             <File>
               <FileName>uart.h</FileName>
+
               <FileType>5</FileType>
               <FilePath>..\common\inc\uart.h</FilePath>
             </File>
@@ -447,6 +460,11 @@
               <FileName>queue.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\common\inc\queue.h</FilePath>
+            </File>
+            <File>
+              <FileName>uart.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\common\inc\uart.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -503,5 +521,14 @@
       </file>
     </files>
   </RTE>
+
+  <LayerInfo>
+    <Layers>
+      <Layer>
+        <LayName>BoardB</LayName>
+        <LayPrjMark>1</LayPrjMark>
+      </Layer>
+    </Layers>
+  </LayerInfo>
 
 </Project>

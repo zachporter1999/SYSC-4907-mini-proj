@@ -8,9 +8,12 @@
 #include "uart.h"
 #include "switches.h"
 
+#define UART_EN
+
 #define BUFF_SIZE (16)
 
 extern uint8_t CR_received;
+extern volatile unsigned send_button;
 
 volatile uart_transceiver_t uart1_transceiver;
 volatile uart_transceiver_t uart2_transceiver;
@@ -20,6 +23,10 @@ volatile uart_transceiver_t uart2_transceiver;
  *----------------------------------------------------------------------------*/
 int main (void) {
 	uint16_t i;
+	
+	uart_transeiver_t uart1_transceiver = Init_UART1(UART_BAUDRATE, sizeof(uint16_t));
+
+	
 	/*
 	//polling approach
 	char bugger[16];
@@ -29,10 +36,8 @@ int main (void) {
 	char buff[BUFF_SIZE];
 	__enable_irq();
 	
-	Init_5way_Switch();
+	Init_4way_Switch();
 	
-	
-	Init_UART1(300);
 	Init_LCD();
 	Set_Cursor(0,0);
 	Print_LCD("bruh");
@@ -55,8 +60,8 @@ int main (void) {
 		//interrupt approach
 		if (Get_Num_Rx_Chars_Available() >= 2) {
 			i = 0;
-			i |= (uint16_t)(Get_Char() << 8);
-			i |= (uint8_t)Get_Char();
+			i = (uint16_t)get_data(&uart1_transceiver);
+			i = 65535 - (uint16_t)get_data(&uart1_transceiver);
 			sprintf(buff, "IR: %u", i);
 			Clear_LCD();
 			Set_Cursor(0,0);
@@ -66,8 +71,8 @@ int main (void) {
 			Delay(20);
 		}
 		
-		
+		send_data(&uart1_transceiver, &send_button);
 	}
 }
 
-// *******************************ARM University Program Copyright © ARM Ltd 2013*************************************   
+// *******************************ARM University Program Copyright ï¿½ ARM Ltd 2013*************************************   
