@@ -4,6 +4,7 @@
 #include "IR.h"
 #include "UART.h"
 
+#define UART_BAUDRATE 300
 #define IR_SAMPLE_PERIOD 40000
 
 static void Delay(uint32_t dly)
@@ -20,8 +21,10 @@ int main(void)
 	static int diff;
 	unsigned n;
 
+	uart_transeiver_t uart1_transceiver;
+
 	Init_ADC();
-	Init_UART1(300);
+	uart1_transceiver = Init_UART1(UART_BAUDRATE, sizeof(uint16_t));
 	Init_RGB_LEDs();
 	Init_IR_LED();
 	Control_RGB_LEDs(0, 0, 0);	
@@ -49,20 +52,8 @@ int main(void)
 		// light RGB LED according to range
 		Display_Range(avg_diff);
 		
-		// uart_send((avg_diff >> 8) & 0xFF);
-		#if 1
-		
-		Q_Enqueue(&TxQ, (uint8_t)(avg_diff >> 8));
-		Q_Enqueue(&TxQ, (uint8_t)avg_diff);
-		if (!(UART1->C2 & UART_C2_TIE_MASK)) {
-			UART1->C2 |= UART_C2_TIE_MASK;
-		}
+		send_data(&uart1_transceiver, &avg_diff);
+
 		Delay(250);
-		#else
-		UART1_Transmit_Poll((uint8_t)(avg_diff >> 8));
-		//Delay(100);
-		UART1_Transmit_Poll((uint8_t)(avg_diff));
-		Delay(50);
-		#endif
 	}
 }
