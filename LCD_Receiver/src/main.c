@@ -5,20 +5,25 @@
 #include "gpio_defs.h"
 #include "LCD_4bit.h"
 #include "delay.h"
-#include "UART.h"
+#include "uart.h"
 #include "switches.h"
 
 #define BUFF_SIZE (16)
 
 extern uint8_t CR_received;
 extern volatile unsigned send_button;
-
+#define UART_BAUDRATE 300
 
 /*----------------------------------------------------------------------------
   MAIN function
  *----------------------------------------------------------------------------*/
 int main (void) {
 	uint16_t i;
+	
+	#ifdef UART_EN
+	uart1_transceiver = Init_UART1(UART_BAUDRATE, sizeof(uint16_t));
+	#endif
+	
 	/*
 	//polling approach
 	char bugger[16];
@@ -53,8 +58,11 @@ int main (void) {
 		//interrupt approach
 		if (Get_Num_Rx_Chars_Available() >= 2) {
 			i = 0;
-			i |= (uint16_t)(Get_Char() << 8);
-			i |= (uint8_t)Get_Char();
+			i = get_data(&uart1_transceiver);
+			/*
+			i |= (uint16_t)(get_data(&uart1_transceiver) << 8);
+			i |= (uint8_t)get_data(&uart1_transceiver);
+			*/
 			sprintf(buff, "IR: %u", i);
 			Clear_LCD();
 			Set_Cursor(0,0);
