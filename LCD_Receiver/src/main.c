@@ -8,6 +8,8 @@
 #include "uart.h"
 #include "switches.h"
 
+#define UART_EN
+
 #define BUFF_SIZE (16)
 
 extern uint8_t CR_received;
@@ -20,9 +22,8 @@ extern volatile unsigned send_button;
 int main (void) {
 	uint16_t i;
 	
-	#ifdef UART_EN
-	uart1_transceiver = Init_UART1(UART_BAUDRATE, sizeof(uint16_t));
-	#endif
+	uart_transeiver_t uart1_transceiver = Init_UART1(UART_BAUDRATE, sizeof(uint16_t));
+
 	
 	/*
 	//polling approach
@@ -35,7 +36,6 @@ int main (void) {
 	
 	Init_4way_Switch();
 	
-	Init_UART1(300);
 	Init_LCD();
 	Set_Cursor(0,0);
 	Print_LCD("bruh");
@@ -58,11 +58,8 @@ int main (void) {
 		//interrupt approach
 		if (Get_Num_Rx_Chars_Available() >= 2) {
 			i = 0;
-			i = get_data(&uart1_transceiver);
-			/*
-			i |= (uint16_t)(get_data(&uart1_transceiver) << 8);
-			i |= (uint8_t)get_data(&uart1_transceiver);
-			*/
+			i = (uint16_t)get_data(&uart1_transceiver);
+			i = 65535 - (uint16_t)get_data(&uart1_transceiver);
 			sprintf(buff, "IR: %u", i);
 			Clear_LCD();
 			Set_Cursor(0,0);
