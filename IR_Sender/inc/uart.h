@@ -13,8 +13,6 @@ typedef struct
 	Q_T RxQ;
 } uart_transeiver_t;
 
-#define USE_UART_INTERRUPTS (1)
-
 #define UART_OVERSAMPLE (16)
 #define BUS_CLOCK 			(24e6)
 
@@ -35,10 +33,6 @@ uint32_t get_data(uart_transeiver_t* transeiver);
 
 extern Q_T TxQ, RxQ;
 extern uint8_t CR_received;
-
-extern uart_transeiver_t uart0_transeiver;
-extern uart_transeiver_t uart1_transeiver;
-extern uart_transeiver_t uart2_transeiver;
 
 #endif
 // *******************************ARM University Program Copyright © ARM Ltd 2013*************************************   

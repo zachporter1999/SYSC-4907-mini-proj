@@ -113,7 +113,7 @@ uart_transeiver_t Init_UART1(uint32_t baud_rate, size_t data_bytes) {
 	UART1->BDH = UART_BDH_SBR(divisor>>8);
 	UART1->BDL = UART_BDL_SBR(divisor);
 	
-	// No parity, 8 bits, two stop bits, other settings;
+	// No parity, 9 bits, two stop bits, other settings;
 	UART1->C1 = UART_C1_M_MASK | UART_C1_PE_MASK | UART_C1_PT_MASK; 
 	UART1->S2 = 0;
 	UART1->C3 = 0;
@@ -128,7 +128,7 @@ uart_transeiver_t Init_UART1(uint32_t baud_rate, size_t data_bytes) {
 	NVIC_EnableIRQ(UART1_IRQn);
 
 	UART1->C2 |= UART_C2_TIE_MASK | UART_C2_RIE_MASK;
-//	UART1->C2 |= UART_C2_RIE_MASK;
+
 	Q_Init(&transeiver.TxQ);
 	Q_Init(&transeiver.RxQ);
 	
@@ -155,12 +155,11 @@ uart_transeiver_t Init_UART2(uint32_t baud_rate, size_t data_bytes) {
 	UART2->BDH = UART_BDH_SBR(divisor>>8);
 	UART2->BDL = UART_BDL_SBR(divisor);
 	
-	// No parity, 8 bits, two stop bits, other settings;
+	// No parity, 9 bits, two stop bits, other settings;
 	UART2->C1 = UART_C1_M_MASK | UART_C1_PE_MASK | UART_C1_PT_MASK; 
 	UART2->S2 = 0;
 	UART2->C3 = 0;
 	
-// Enable transmitter and receiver but not interrupts
 	UART2->C2 = UART_C2_TE_MASK | UART_C2_RE_MASK;
 
 	transeiver.bytes_per_data = data_bytes;
@@ -170,7 +169,7 @@ uart_transeiver_t Init_UART2(uint32_t baud_rate, size_t data_bytes) {
 	NVIC_EnableIRQ(UART2_IRQn);
 
 	UART2->C2 |= UART_C2_TIE_MASK | UART_C2_RIE_MASK;
-//	UART2->C2 |= UART_C2_RIE_MASK;
+
 	Q_Init(&transeiver.TxQ);
 	Q_Init(&transeiver.RxQ);
 
