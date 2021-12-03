@@ -6,10 +6,13 @@
 #include "LCD_4bit.h"
 #include "delay.h"
 #include "UART.h"
+#include "switches.h"
 
 #define BUFF_SIZE (16)
 
 extern uint8_t CR_received;
+
+
 
 /*----------------------------------------------------------------------------
   MAIN function
@@ -25,10 +28,13 @@ int main (void) {
 	char buff[BUFF_SIZE];
 	__enable_irq();
 	
+	Init_5way_Switch();
+	
+	
 	Init_UART1(300);
 	Init_LCD();
 	Set_Cursor(0,0);
-		Print_LCD("bruh");
+	Print_LCD("bruh");
 	
 	while(1) {
 		/*
@@ -58,6 +64,7 @@ int main (void) {
 			Print_LCD("Interrupt");
 			Delay(20);
 		}
+		
 		
 	}
 }
