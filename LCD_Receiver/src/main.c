@@ -5,14 +5,15 @@
 #include "gpio_defs.h"
 #include "LCD_4bit.h"
 #include "delay.h"
-#include "UART.h"
+#include "uart.h"
 #include "switches.h"
 
 #define BUFF_SIZE (16)
 
 extern uint8_t CR_received;
 
-
+volatile uart_transceiver_t uart1_transceiver;
+volatile uart_transceiver_t uart2_transceiver;
 
 /*----------------------------------------------------------------------------
   MAIN function
