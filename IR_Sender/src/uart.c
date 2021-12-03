@@ -4,7 +4,6 @@
 Q_T TxQ, RxQ;
 uint8_t CR_received = 0;
 
-uart_transeiver_t uart0_transeiver;
 uart_transeiver_t uart1_transeiver;
 uart_transeiver_t uart2_transeiver;
 
@@ -190,6 +189,18 @@ uint8_t UART1_Receive_Poll(void) {
 		return UART1->D;
 }	
 
+void UART2_Transmit_Poll(uint8_t data) {
+		while (!(UART1->S1 & UART_S1_TDRE_MASK))
+			;
+		UART1->D = data;
+}	
+
+uint8_t UART2_Receive_Poll(void) {
+		while (!(UART1->S1 & UART_S1_RDRF_MASK))
+			;
+		return UART1->D;
+}	
+
 void UART1_IRQHandler(void) {
 	uint8_t c;
 	NVIC_ClearPendingIRQ(UART1_IRQn);
@@ -223,7 +234,44 @@ void UART1_IRQHandler(void) {
 			/*
 			UART1->S1 = UART_S1_OR_MASK | UART_S1_NF_MASK | 
 				UART_S1_FE_MASK | UART_S1_PF_MASK;
-			*/
+		 */
+		}
+}
+
+void UART2_IRQHandler(void) {
+	uint8_t c;
+	NVIC_ClearPendingIRQ(UART2_IRQn);
+	if (UART2->S1 & UART_S1_TDRE_MASK) {
+		// can send another character
+		if (!Q_Empty(&TxQ)) {
+			UART2->D = Q_Dequeue(&TxQ);
+		} else {
+			// queue is empty so disable transmitter
+			UART2->C2 &= ~UART_C2_TIE_MASK;
+		}
+	}
+	if (UART2->S1 & UART_S1_RDRF_MASK) {
+		// received a character
+		if (!Q_Full(&RxQ)) {
+			c = UART2->D;
+			Q_Enqueue(&RxQ, c);
+			if (c == '\r') {
+				CR_received++;
+			}
+		} else {
+			// error - queue full.
+			while (1)
+				;
+		}
+	}
+	if (UART2->S1 & (UART_S1_OR_MASK |UART_S1_NF_MASK | 
+		UART_S1_FE_MASK | UART_S1_PF_MASK)) {
+			// handle the error
+			// clear the flag
+			/*
+			UART2->S1 = UART_S1_OR_MASK | UART_S1_NF_MASK | 
+				UART_S1_FE_MASK | UART_S1_PF_MASK;
+		 */
 		}
 }
 
@@ -258,7 +306,7 @@ uint32_t Get_Num_Rx_Chars_Available(void) {
 	return Q_Size(&RxQ);
 }
 
-void* get_data(uart_transeiver_t* transeiver)
+uint32_t get_data(uart_transeiver_t* transeiver)
 {
 	uint32_t received_data = 0;
 
@@ -272,5 +320,5 @@ void* get_data(uart_transeiver_t* transeiver)
 		received_data |= (uint32_t)(byte << 8 * byte_idx);
 	}
 
-	&received_data;
+	return received_data;
 }
