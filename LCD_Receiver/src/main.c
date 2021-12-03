@@ -76,4 +76,4 @@ int main (void) {
 	}
 }
 
-// *******************************ARM University Program Copyright © ARM Ltd 2013*************************************   
+// *******************************ARM University Program Copyright ï¿½ ARM Ltd 2013*************************************   
