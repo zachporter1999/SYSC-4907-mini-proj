@@ -14,7 +14,9 @@
 
 extern uint8_t CR_received;
 extern volatile unsigned send_button;
-#define UART_BAUDRATE 300
+
+volatile uart_transceiver_t uart1_transceiver;
+volatile uart_transceiver_t uart2_transceiver;
 
 /*----------------------------------------------------------------------------
   MAIN function

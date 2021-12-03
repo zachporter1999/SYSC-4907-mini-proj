@@ -6,11 +6,13 @@
 #include "LCD_4bit.h"
 #include "delay.h"
 
-//#define UART_EN
+#define UART_EN
 
-#define UART_BAUDRATE 300
 #define IR_SAMPLE_PERIOD 40000
 #define UART_BAUDRATE 300
+
+volatile uart_transceiver_t uart1_transceiver;
+volatile uart_transceiver_t uart2_transceiver;
 
 int main(void)
 {
@@ -19,24 +21,19 @@ int main(void)
 	static int diff;
 	unsigned n;
 
-	//uart_transeiver_t uart1_transceiver;
+	Init_UART1(UART_BAUDRATE, sizeof(uint16_t), &uart1_transceiver);
   
-	#if 0
 	Init_LCD();	
 	Clear_LCD();
 	Set_Cursor(0, 0);
 	Print_LCD("Hello World");
-	#endif
 	
-	Init_ADC();
-	
-	#ifdef UART_EN
-	uart1_transceiver = Init_UART1(UART_BAUDRATE, sizeof(uint16_t));
-	#endif
-	
+	Init_ADC();	
 	Init_RGB_LEDs();
 	Init_IR_LED();
 	Control_RGB_LEDs(0, 0, 0);	
+	
+	__enable_irq();
 	
 	while (1)
 	{
@@ -65,6 +62,6 @@ int main(void)
 		send_data(&uart1_transceiver, &avg_diff);
 		#endif
 
-		Delay(250);
+		Delay(10);
 	}
 }
