@@ -12,7 +12,7 @@ static uint8_t lcd_read_status(void)
   Delay(1);
   SET_LCD_E(1)
   Delay(1);
-  status  = GET_LCD_DATA_IN << 4;
+  status  = (uint8_t)(GET_LCD_DATA_IN << 4);
   SET_LCD_E(0)
   Delay(1);
   SET_LCD_E(1)
@@ -62,8 +62,9 @@ void lcd_putchar(char c)
   lcd_write_data(c);
 }
 
-void lcd_init_port(void) {
-	/* Enable clocks for peripherals        */
+void Init_LCD(void)
+{ 
+		/* Enable clocks for peripherals        */
   ENABLE_LCD_PORT_CLOCKS                          
 
 	/* Set Pin Mux to GPIO */
@@ -74,12 +75,6 @@ void lcd_init_port(void) {
 	PIN_E_PORT->PCR[PIN_E_SHIFT] = PORT_PCR_MUX(1);
 	PIN_RW_PORT->PCR[PIN_RW_SHIFT] = PORT_PCR_MUX(1);
 	PIN_RS_PORT->PCR[PIN_RS_SHIFT] = PORT_PCR_MUX(1);
-}
-
-void Init_LCD(void)
-{ 
-	/* initialize port(s) for LCD */
-	lcd_init_port();
 	
   /* Set all pins for LCD as outputs */
   SET_LCD_ALL_DIR_OUT

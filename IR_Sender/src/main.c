@@ -2,9 +2,11 @@
 #include <stdio.h>
 #include "LEDs.h"
 #include "IR.h"
-#include "UART.h"
+#include "uart.h"
 #include "LCD_4bit.h"
 #include "delay.h"
+
+//#define UART_EN
 
 #define UART_BAUDRATE 300
 #define IR_SAMPLE_PERIOD 40000
@@ -17,15 +19,21 @@ int main(void)
 	static int diff;
 	unsigned n;
 
-	uart_transeiver_t uart1_transceiver;
+	//uart_transeiver_t uart1_transceiver;
   
+	#if 0
 	Init_LCD();	
 	Clear_LCD();
 	Set_Cursor(0, 0);
 	Print_LCD("Hello World");
+	#endif
 	
 	Init_ADC();
+	
+	#ifdef UART_EN
 	uart1_transceiver = Init_UART1(UART_BAUDRATE, sizeof(uint16_t));
+	#endif
+	
 	Init_RGB_LEDs();
 	Init_IR_LED();
 	Control_RGB_LEDs(0, 0, 0);	
@@ -52,8 +60,10 @@ int main(void)
 
 		// light RGB LED according to range
 		Display_Range(avg_diff);
-		
+
+		#ifdef UART_EN
 		send_data(&uart1_transceiver, &avg_diff);
+		#endif
 
 		Delay(250);
 	}
