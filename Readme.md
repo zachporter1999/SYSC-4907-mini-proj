@@ -2,13 +2,15 @@
 
 ## Purpose
 
-In order for the PAT Unit to operate successfully, the various subsystems responsible for driving and obstacle avoidance will need to communicate effectively. This is where serial communication between boards comes in. Communication between boards allows for a more modular design of the PAT Unit, and ensures that environmental stimuli gets responded to in a timely fashion.
+In order for the PAT Unit to operate successfully, the various subsystems responsible for driving and obstacle avoidance will need to communicate effectively. Both with other device onboard the PAT Unit, and wirelessly with other PAT Units, and beacons. This is where serial communication comes in. Communication between boards allows for a more modular design of the PAT Unit, and ensures that environmental stimuli can be responded to in a timely fashion. Serial Communication also allows for communication with various types of antennas that will allow for long range, wireless communication.
 
 ## System Overview
 
-![Alt text](Documentation/out/puml/system-uart/system-uart.png?raw=true "System Overview")
+![Alt text](Documentation/out/puml/system-uart/system-2way-uart.png?raw=true "System Overview")
+Figure 1:
+![Alt text](Documentation/out/puml/system-uart/system-bluetooth.png?raw=true "System Overview")
 
-This mini project will consist of 2 KL25Z Microcontrollers (Board A, and board B) communicating through UART. Board A will be responsible for reading data from the onboard accelerometer using I2C, and sending the data to Board B. Board B will then receive the data, and display it on the LCD.
+This mini project consisted of 2 KL25Z Microcontrollers (Board A, and board B) communicating through UART. Board A will be responsible for reading data from the onboard accelerometer using I2C, and sending the data to Board B. Board B will then receive the data, and display it on the LCD.
 
 ### Board A
 
