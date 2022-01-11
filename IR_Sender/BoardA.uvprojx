@@ -339,7 +339,7 @@
               <MiscControls></MiscControls>
               <Define></Define>
               <Undefine></Undefine>
-              <IncludePath>./inc</IncludePath>
+              <IncludePath>./inc;..\common\inc</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -384,11 +384,6 @@
           <GroupName>Source Files</GroupName>
           <Files>
             <File>
-              <FileName>LEDs.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\src\LEDs.c</FilePath>
-            </File>
-            <File>
               <FileName>main.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\src\main.c</FilePath>
@@ -399,25 +394,40 @@
               <FilePath>.\src\IR.c</FilePath>
             </File>
             <File>
-              <FileName>queue.c</FileName>
+              <FileName>timers.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\src\queue.c</FilePath>
+              <FilePath>.\src\timers.c</FilePath>
             </File>
             <File>
-              <FileName>UART.c</FileName>
+              <FileName>delay.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\src\UART.c</FilePath>
+              <FilePath>..\common\src\delay.c</FilePath>
+            </File>
+            <File>
+              <FileName>LCD_4bit.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\common\src\LCD_4bit.c</FilePath>
+            </File>
+            <File>
+              <FileName>LEDs.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\common\src\LEDs.c</FilePath>
+            </File>
+            <File>
+              <FileName>queue.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\common\src\queue.c</FilePath>
+            </File>
+            <File>
+              <FileName>uart.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\common\src\uart.c</FilePath>
             </File>
           </Files>
         </Group>
         <Group>
           <GroupName>Include Files</GroupName>
           <Files>
-            <File>
-              <FileName>LEDs.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\inc\LEDs.h</FilePath>
-            </File>
             <File>
               <FileName>user_defs.h</FileName>
               <FileType>5</FileType>
@@ -429,14 +439,34 @@
               <FilePath>.\inc\IR.h</FilePath>
             </File>
             <File>
-              <FileName>queue.h</FileName>
+              <FileName>timers.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\inc\queue.h</FilePath>
+              <FilePath>.\inc\timers.h</FilePath>
             </File>
             <File>
-              <FileName>UART.h</FileName>
+              <FileName>delay.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\inc\UART.h</FilePath>
+              <FilePath>..\common\inc\delay.h</FilePath>
+            </File>
+            <File>
+              <FileName>LCD_4bit.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\common\inc\LCD_4bit.h</FilePath>
+            </File>
+            <File>
+              <FileName>LEDs.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\common\inc\LEDs.h</FilePath>
+            </File>
+            <File>
+              <FileName>queue.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\common\inc\queue.h</FilePath>
+            </File>
+            <File>
+              <FileName>uart.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\common\inc\uart.h</FilePath>
             </File>
           </Files>
         </Group>

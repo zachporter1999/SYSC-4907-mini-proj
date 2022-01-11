@@ -46,7 +46,7 @@
 #define SET_LCD_RW(x)             if (x) {PIN_RW_PT->PSOR = PIN_RW;} else {PIN_RW_PT->PCOR = PIN_RW;}
 #define SET_LCD_RS(x)             if (x) {PIN_RS_PT->PSOR = PIN_RS;} else {PIN_RS_PT->PCOR = PIN_RS;}
 
-#define SET_LCD_DATA_OUT(x)       PIN_DATA_PT->PDOR = (PIN_DATA_PT->PDOR & ~PINS_DATA) | ((x) << PIN_DATA_SHIFT);
+#define SET_LCD_DATA_OUT(x)       PIN_DATA_PT->PDOR = (PIN_DATA_PT->PDOR & ~(uint32_t)(PINS_DATA)) | (uint32_t)((x) << PIN_DATA_SHIFT);
 #define GET_LCD_DATA_IN           (((PIN_DATA_PT->PDIR & PINS_DATA) >> PIN_DATA_SHIFT) & 0x0F)
 
 /* Setting all pins to output mode                                            */
@@ -56,10 +56,10 @@
 																PIN_RS_PT->PDDR = PIN_RS_PT->PDDR | PIN_RS; }
 
 /* Setting DATA pins to input mode                                            */
-#define SET_LCD_DATA_DIR_IN       PIN_DATA_PT->PDDR = PIN_DATA_PT->PDDR & ~PINS_DATA;
+#define SET_LCD_DATA_DIR_IN       PIN_DATA_PT->PDDR = (uint32_t)(PIN_DATA_PT->PDDR & ~(uint32_t)PINS_DATA);
 
 /* Setting DATA pins to output mode                                           */
-#define SET_LCD_DATA_DIR_OUT      PIN_DATA_PT->PDDR = PIN_DATA_PT->PDDR | PINS_DATA;
+#define SET_LCD_DATA_DIR_OUT      PIN_DATA_PT->PDDR =(uint32_t)(PIN_DATA_PT->PDDR | (uint32_t)PINS_DATA);
 
 #define LCD_BUSY_FLAG_MASK				(0x80)
 
@@ -69,4 +69,8 @@ void Set_Cursor (uint8_t column, uint8_t row);
 void Clear_LCD(void);
 void Print_LCD (char *string);
 void lcd_putchar (char c);
+void lcd_write_4bit(uint8_t c);
+void wait_while_busy(void);
+void lcd_write_cmd(uint8_t c);
+
 

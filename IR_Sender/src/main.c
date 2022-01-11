@@ -2,16 +2,17 @@
 #include <stdio.h>
 #include "LEDs.h"
 #include "IR.h"
-#include "UART.h"
+#include "uart.h"
+#include "LCD_4bit.h"
+#include "delay.h"
+
+#define UART_EN
 
 #define IR_SAMPLE_PERIOD 40000
+#define UART_BAUDRATE 300
 
-static void Delay(uint32_t dly)
-{
-	volatile uint32_t t;
-	
-	for (t=dly*10000; t>0; t--);
-}
+volatile uart_transceiver_t uart1_transceiver;
+volatile uart_transceiver_t uart2_transceiver;
 
 int main(void)
 {
@@ -20,11 +21,19 @@ int main(void)
 	static int diff;
 	unsigned n;
 
-	Init_ADC();
-	Init_UART1(300);
+	Init_UART1(UART_BAUDRATE, sizeof(uint16_t), &uart1_transceiver);
+  
+	Init_LCD();	
+	Clear_LCD();
+	Set_Cursor(0, 0);
+	Print_LCD("Hello World");
+	
+	Init_ADC();	
 	Init_RGB_LEDs();
 	Init_IR_LED();
 	Control_RGB_LEDs(0, 0, 0);	
+	
+	__enable_irq();
 	
 	while (1)
 	{
@@ -48,21 +57,11 @@ int main(void)
 
 		// light RGB LED according to range
 		Display_Range(avg_diff);
-		
-		// uart_send((avg_diff >> 8) & 0xFF);
-		#if 1
-		
-		Q_Enqueue(&TxQ, (uint8_t)(avg_diff >> 8));
-		Q_Enqueue(&TxQ, (uint8_t)avg_diff);
-		if (!(UART1->C2 & UART_C2_TIE_MASK)) {
-			UART1->C2 |= UART_C2_TIE_MASK;
-		}
-		Delay(250);
-		#else
-		UART1_Transmit_Poll((uint8_t)(avg_diff >> 8));
-		//Delay(100);
-		UART1_Transmit_Poll((uint8_t)(avg_diff));
-		Delay(50);
+
+		#ifdef UART_EN
+		send_data(&uart1_transceiver, &avg_diff);
 		#endif
+
+		Delay(10);
 	}
 }

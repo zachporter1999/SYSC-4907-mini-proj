@@ -313,7 +313,7 @@
           </ArmAdsMisc>
           <Cads>
             <interw>1</interw>
-            <Optim>2</Optim>
+            <Optim>1</Optim>
             <oTime>0</oTime>
             <SplitLS>0</SplitLS>
             <OneElfS>1</OneElfS>
@@ -339,7 +339,7 @@
               <MiscControls></MiscControls>
               <Define></Define>
               <Undefine></Undefine>
-              <IncludePath>.\inc</IncludePath>
+              <IncludePath>.\inc;..\common\inc</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -384,30 +384,49 @@
           <GroupName>Source Files</GroupName>
           <Files>
             <File>
+              <FileName>main.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\src\main.c</FilePath>
+            </File>
+            <File>
               <FileName>delay.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\src\delay.c</FilePath>
+              <FilePath>..\common\src\delay.c</FilePath>
             </File>
             <File>
               <FileName>LCD_4bit.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\src\LCD_4bit.c</FilePath>
+              <FilePath>..\common\src\LCD_4bit.c</FilePath>
             </File>
             <File>
-              <FileName>main.c</FileName>
+
+              <FileName>queue.c</FileName>
+
+              <FileName>switches.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\src\main.c</FilePath>
+              <FilePath>.\src\switches.c</FilePath>
+            </File>
+            <File>
+              <FileName>uart.c</FileName>
+
+              <FileType>1</FileType>
+              <FilePath>..\common\src\uart.c</FilePath>
+            </File>
+            <File>
+              <FileName>queue.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\common\src\queue.c</FilePath>
+            </File>
+            <File>
+              <FileName>uart.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\common\src\uart.c</FilePath>
             </File>
           </Files>
         </Group>
         <Group>
           <GroupName>Include Files</GroupName>
           <Files>
-            <File>
-              <FileName>delay.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\inc\delay.h</FilePath>
-            </File>
             <File>
               <FileName>gpio_defs.h</FileName>
               <FileType>5</FileType>
@@ -416,7 +435,36 @@
             <File>
               <FileName>LCD_4bit.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\inc\LCD_4bit.h</FilePath>
+              <FilePath>..\common\inc\LCD_4bit.h</FilePath>
+            </File>
+            <File>
+              <FileName>delay.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\common\inc\delay.h</FilePath>
+            </File>
+            <File>
+
+              <FileName>queue.h</FileName>
+
+              <FileName>switches.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\inc\switches.h</FilePath>
+            </File>
+            <File>
+              <FileName>uart.h</FileName>
+
+              <FileType>5</FileType>
+              <FilePath>..\common\inc\uart.h</FilePath>
+            </File>
+            <File>
+              <FileName>queue.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\common\inc\queue.h</FilePath>
+            </File>
+            <File>
+              <FileName>uart.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\common\inc\uart.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -473,5 +521,14 @@
       </file>
     </files>
   </RTE>
+
+  <LayerInfo>
+    <Layers>
+      <Layer>
+        <LayName>BoardB</LayName>
+        <LayPrjMark>1</LayPrjMark>
+      </Layer>
+    </Layers>
+  </LayerInfo>
 
 </Project>
