@@ -51,7 +51,7 @@ uart_transceiver_t Init_UART1(uint32_t baud_rate, size_t data_bytes) {
 	return new_transceiver;
 }
 
-uart_transceiver_t Init_UART2(uint32_t baud_rate, size_t data_bytes, uart_transceiver_t *transceiver) {
+uart_transceiver_t Init_UART2(uint32_t baud_rate, size_t data_bytes) {
 	uart_transceiver_t new_transceiver;
 	uint32_t divisor;
 	

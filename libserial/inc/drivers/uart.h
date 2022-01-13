@@ -72,6 +72,6 @@ uint32_t get_data(uart_transceiver_t* transeiver);
  * Return:
  * - The number of bytes stored in the queue
 */
-uint32_t Get_Num_Rx_Chars_Available(uart_transceiver_t *transceiver) {
+uint32_t Get_Num_Rx_Chars_Available(uart_transceiver_t *transceiver);
 
 #endif
