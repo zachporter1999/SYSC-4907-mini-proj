@@ -1,25 +1,25 @@
 
 # Table of Contents
 
-1.  [Purpose](#orgaabf47c)
-2.  [Setup Instructions](#org0605a43)
+1.  [Purpose](#org0ec5866)
+2.  [Setup Instructions](#org895cf33)
 
 
 
-<a id="orgaabf47c"></a>
+<a id="org0ec5866"></a>
 
 # Purpose
 
 This serial communication library, formerly Team 1&rsquo;s mini project, is intended to provide a easy to implement interface to interact with UART, I2C, and SPI devices.
 
 
-<a id="org0605a43"></a>
+<a id="org895cf33"></a>
 
 # Setup Instructions
 
 The setup instructions assume you have an existing project you wish to implement serial communication in.
 
-1.  Clone this repository to your computer.
+1.  Clone this repository to your computer. (`git clone https://github.com/zachporter1999/SYSC-4907-mini-proj.git`)
 2.  Open the library project and build it.
 3.  In your existing project, under &ldquo;*Options for Target 1 >> C/C++ (AC6) >> Include Paths*&rdquo; add the ralative path to the &ldquo;*libserial//inc*&rdquo; diretory
 

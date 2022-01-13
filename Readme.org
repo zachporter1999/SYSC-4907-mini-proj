@@ -7,7 +7,7 @@ This serial communication library, formerly Team 1's mini project, is intended t
 * Setup Instructions
 The setup instructions assume you have an existing project you wish to implement serial communication in.
 
-1. Clone this repository to your computer.
+1. Clone this repository to your computer. (~git clone https://github.com/zachporter1999/SYSC-4907-mini-proj.git~)
 2. Open the library project and build it.
 3. In your existing project, under "/Options for Target 1 >> C/C++ (AC6) >> Include Paths/" add the ralative path to the "/libserial//inc/" diretory
 
