@@ -20,9 +20,9 @@ extern uint8_t CR_received;
  * Config data for uart Transceiver
  *
  * Elements:
- * - bytes_per_data : The baud rate the uart port sends/receives at.
- * - TxQ            : The transmission queue
- * - RxQ            : The receiption queue
+ * - bytes_per_data : The number of bytes per message to send.
+ * - TxQ            : The transmission queue.
+ * - RxQ            : The receiption queue.
 */
 typedef struct
 {
@@ -36,6 +36,7 @@ typedef struct
  * Initialization of UART ports 1 and 2.
  * TODO Implement UART 0
  * TODO INIT has smelly code. How to cleanup?
+ *      - PORT PCR, NVIC IRQn, NVIC Priority Vary for different UART
  *
  * Args:
  * - baud_rate   : The baud rate the uart port sends/receives at.
