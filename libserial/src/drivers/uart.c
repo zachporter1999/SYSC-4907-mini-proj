@@ -1,16 +1,16 @@
 #include "drivers/uart.h"
 #include <stdint.h>
 
-
-Q_T TxQ, RxQ;
 uint8_t CR_received = 0;
 
-volatile uart_transceiver_t uart1_transceiver;
-volatile uart_transceiver_t uart2_transceiver;
-
-void Init_UART1(uint32_t baud_rate, size_t data_bytes, uart_transceiver_t *transceiver) {
+// NOTE Things specific to uart devices
+// - PORT PCR
+// - NVIC IRQn
+// - NVIC Priority
+uart_transceiver_t Init_UART1(uint32_t baud_rate, size_t data_bytes) {
+	uart_transceiver_t new_transceiver;
 	uint32_t divisor;
-	
+
 	// enable clock to UART and Port E
 	SIM->SCGC4 |= SIM_SCGC4_UART1_MASK;
 	SIM->SCGC5 |= SIM_SCGC5_PORTE_MASK;
@@ -43,13 +43,16 @@ void Init_UART1(uint32_t baud_rate, size_t data_bytes, uart_transceiver_t *trans
 
 	UART1->C2 |= UART_C2_TIE_MASK | UART_C2_RIE_MASK;
 
-	transceiver->bytes_per_data = data_bytes;
+	new_transceiver.bytes_per_data = data_bytes;
 
-	Q_Init(&transceiver->TxQ);
-	Q_Init(&transceiver->RxQ);
+	Q_Init(&new_transceiver->TxQ);
+	Q_Init(&new_transceiver->RxQ);
+
+	return new_transceiver;
 }
 
-void Init_UART2(uint32_t baud_rate, size_t data_bytes, uart_transceiver_t *transceiver) {
+uart_transceiver_t Init_UART2(uint32_t baud_rate, size_t data_bytes, uart_transceiver_t *transceiver) {
+	uart_transceiver_t new_transceiver;
 	uint32_t divisor;
 	
 	// enable clock to UART and Port E
@@ -75,19 +78,18 @@ void Init_UART2(uint32_t baud_rate, size_t data_bytes, uart_transceiver_t *trans
 	
 	UART2->C2 = UART_C2_TE_MASK | UART_C2_RE_MASK;
 
-	transceiver->bytes_per_data = data_bytes;
-	
 	NVIC_SetPriority(UART2_IRQn, 128); // 0, 64, 128 or 192
 	NVIC_ClearPendingIRQ(UART2_IRQn); 
 	NVIC_EnableIRQ(UART2_IRQn);
 
 	UART2->C2 |= UART_C2_TIE_MASK | UART_C2_RIE_MASK;
 
-	transceiver->bytes_per_data = data_bytes;
+	new_transceiver.bytes_per_data = data_bytes;
 
-	Q_Init(&transceiver->TxQ);
-	Q_Init(&transceiver->RxQ);
+	Q_Init(&new_transceiver->TxQ);
+	Q_Init(&new_transceiver->RxQ);
 
+	return new_transceiver;
 }
 
 void UART1_IRQHandler(void) {
@@ -191,10 +193,6 @@ void send_data(uart_transceiver_t *transceiver, void* data)
 	}
 }
 
-uint32_t Get_Num_Rx_Chars_Available(void) {
-	return Q_Size(&RxQ);
-}
-
 uint32_t get_data(uart_transceiver_t* transceiver)
 {
 	uint32_t received_data = 0;
@@ -210,4 +208,8 @@ uint32_t get_data(uart_transceiver_t* transceiver)
 	}
 
 	return received_data;
+}
+
+uint32_t Get_Num_Rx_Chars_Available(uart_transceiver_t *transceiver) {
+	return Q_Size(&transceiver->RxQ);
 }
