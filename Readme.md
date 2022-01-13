@@ -1,19 +1,29 @@
 
 # Table of Contents
 
-1.  [Purpose](#org819f98b)
-2.  [Setup Instructions](#org5c51fe3)
+1.  [Purpose](#org1d624ad)
+    1.  [Currently Implemented Drivers](#orge7a13b8)
+2.  [Setup Instructions](#orgb4264fa)
 
 
 
-<a id="org819f98b"></a>
+<a id="org1d624ad"></a>
 
 # Purpose
 
 This serial communication library, formerly Team 1&rsquo;s mini project, is intended to provide a easy to implement interface to interact with UART, I2C, and SPI devices.
 
 
-<a id="org5c51fe3"></a>
+<a id="orge7a13b8"></a>
+
+## Currently Implemented Drivers
+
+-   [ ] UART
+-   [ ] I2C
+-   [ ] SPI
+
+
+<a id="orgb4264fa"></a>
 
 # Setup Instructions
 
@@ -25,9 +35,9 @@ The setup instructions assume you have an existing project you wish to implement
 
 ![img](./Documentation/out/setup/inc.png "Where to set the &ldquo;*Include Paths*&rdquo; setting.")
 
-4.  In the project window at the left side of the Keil IDE, right click on the &ldquo;`Target 1`&rdquo; folder and add a new group.
-5.  Rename this new group/folder to lib.
-6.  right click on the &ldquo;`lib`&rdquo; folder, add existing item, and add the &ldquo;`libserial//Objects//libserial.lib`&rdquo;
+1.  In the project window at the left side of the Keil IDE, right click on the &ldquo;`Target 1`&rdquo; folder and add a new group.
+2.  Rename this new group/folder to lib.
+3.  right click on the &ldquo;`lib`&rdquo; folder, add existing item, and add the &ldquo;`libserial//Objects//libserial.lib`&rdquo;
 
 ![img](./Documentation/out/setup/lib.png "Where to create the &ldquo;*lib*&rdquo; folder to add the &ldquo;*.lib*&rdquo; file to.")
 

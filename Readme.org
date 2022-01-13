@@ -4,6 +4,11 @@
 * Purpose
 This serial communication library, formerly Team 1's mini project, is intended to provide a easy to implement interface to interact with UART, I2C, and SPI devices.
 
+** Currently Implemented Drivers
++ [ ] UART
++ [ ] I2C
++ [ ] SPI
+
 * Setup Instructions
 The setup instructions assume you have an existing project you wish to implement serial communication in.
 
