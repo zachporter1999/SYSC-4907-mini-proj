@@ -11,7 +11,8 @@ int main(void)
 {
 #if TEST_UART
 
-	Init_UART1(9600, sizeof(uint8_t), NULL);
+	uart_transceiver_t uart1_transeiver = Init_UART1(9600, sizeof(uint8_t));
+	uart_transceiver_t uart2_transeiver = Init_UART2(115200, sizeof(uint8_t));
 
 #endif
 
