@@ -1,43 +1,48 @@
-# Mini Project: Serial Communication between KL25Z board
 
-## Purpose
+# Table of Contents
 
-In order for the PAT Unit to operate successfully, the various subsystems responsible for driving and obstacle avoidance will need to communicate effectively. Both with other device onboard the PAT Unit, and wirelessly with other PAT Units, and beacons. This is where serial communication comes in. Communication between boards allows for a more modular design of the PAT Unit, and ensures that environmental stimuli can be responded to in a timely fashion. Serial Communication also allows for communication with various types of antennas that will allow for long range, wireless communication.
+1.  [Purpose](#orgaabf47c)
+2.  [Setup Instructions](#org0605a43)
 
-## System Overview
 
-![Alt text](Documentation/out/puml/system-uart/system-2way-uart.png?raw=true "System Overview")
-Figure 1:
-![Alt text](Documentation/out/puml/system-uart/system-bluetooth.png?raw=true "System Overview")
 
-This mini project consisted of 2 KL25Z Microcontrollers (Board A, and board B) communicating through UART. Board A will be responsible for reading data from the onboard accelerometer using I2C, and sending the data to Board B. Board B will then receive the data, and display it on the LCD.
+<a id="orgaabf47c"></a>
 
-### Board A
+# Purpose
 
-![Alt text](Documentation/out/puml/BoardA/BoardA.png?raw=true "Board A Sequence Diagram")
+This serial communication library, formerly Team 1&rsquo;s mini project, is intended to provide a easy to implement interface to interact with UART, I2C, and SPI devices.
 
-Board A is responsible for reading new data from the onboard accelerometer. This will involve reading from the accelerometer through its I2C interface. After which the data will need to be sent to Board B via the UART connection.
 
-### Board B
+<a id="org0605a43"></a>
 
-![Alt text](Documentation/out/puml/BoardB/BoardB.png?raw=true "Board B Sequence Diagram")
+# Setup Instructions
 
-Board B will receive data from the UART connection to Board A. Upon receiving data from Board A, Board B will need to update the LCD display to output the new data.
+The setup instructions assume you have an existing project you wish to implement serial communication in.
 
-## Communication of Data
+1.  Clone this repository to your computer.
+2.  Open the library project and build it.
+3.  In your existing project, under &ldquo;*Options for Target 1 >> C/C++ (AC6) >> Include Paths*&rdquo; add the ralative path to the &ldquo;*libserial//inc*&rdquo; diretory
 
-It should be noted that in order to transmit all the data from Board A to Board B there may have to be multiple packets sent. This will require design of a communication pattern to ensure all data is recieved before updating the LCD
+![img](./Documentation/out/setup/inc.png "Where to set the &ldquo;*Include Paths*&rdquo; setting.")
 
-## Repository Structure
+1.  In the project window at the left side of the Keil IDE, right click on the &ldquo;*Target 1*&rdquo; folder and add a new group.
+2.  Rename this new group/folder to lib.
+3.  right click on the &ldquo;*lib*&rdquo; folder, add existing item, and add the &ldquo;*libserial//Objects//libserial.lib*&rdquo;
 
-This repo consists of Documentation, and a Keil workspace containing 2 Keil projects. In order to open this workspace, please open the workspace file "MiniProject.uvmpw". This will open both projects in keil.
+![img](./Documentation/out/setup/lib.png "Where to create the &ldquo;*lib*&rdquo; folder to add the &ldquo;*.lib*&rdquo; file to.")
 
-Each project exists in their own subdirectories "IR_Sender" for BoardA's project, and "LCD_Receiver" for BoardB's project. Each subdirectory has the source and include files for the corresponding project.
+In order to use this library in your code you will need to include the appropriate header files.
 
-See the diagram below for an overview of the repo's structure.
+    #include <MKL25Z.h>
+    
+    // Include libserial headers
+    #include "drivers/uart.h"
+    #include "drivers/i2c.h"
+    #include "drivers/spi.h"
+    
+    int main() {
+    
+      // Main code here
+    
+    }
 
-![Alt text](Documentation/out/puml/Structure/Structure.png?raw=true "Repo Structure")
-
-## Contributing
-
-When adding source (_.c) or header files (_.h) place them in the Source or Include folders that correspond to the project they belong to.

@@ -1,0 +1,41 @@
+#+TITLE: Serial Communication Library
+#+AUTHOR: Zach Porter, Erdem Yanikomerolgu
+
+* Purpose
+This serial communication library, formerly Team 1's mini project, is intended to provide a easy to implement interface to interact with UART, I2C, and SPI devices.
+
+* Setup Instructions
+The setup instructions assume you have an existing project you wish to implement serial communication in.
+
+1. Clone this repository to your computer.
+2. Open the library project and build it.
+3. In your existing project, under "/Options for Target 1 >> C/C++ (AC6) >> Include Paths/" add the ralative path to the "/libserial//inc/" diretory
+
+#+CAPTION: Where to set the "/Include Paths/" setting.
+#+NAME: fig:include-setup
+[[./Documentation/out/setup/inc.png]]
+
+4. In the project window at the left side of the Keil IDE, right click on the "/Target 1/" folder and add a new group.
+5. Rename this new group/folder to lib.
+6. right click on the "/lib/" folder, add existing item, and add the "/libserial//Objects//libserial.lib/"
+
+#+CAPTION: Where to create the "/lib/" folder to add the "/.lib/" file to.
+#+NAME: fig:library-setup
+[[./Documentation/out/setup/lib.png]]
+
+In order to use this library in your code you will need to include the appropriate header files.
+
+#+begin_src c
+#include <MKL25Z.h>
+
+// Include libserial headers
+#include "drivers/uart.h"
+#include "drivers/i2c.h"
+#include "drivers/spi.h"
+
+int main() {
+
+  // Main code here
+
+}
+#+end_src
