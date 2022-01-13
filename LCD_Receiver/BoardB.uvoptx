@@ -208,7 +208,7 @@
   </Target>
 
   <Group>
-    <GroupName>Source Files</GroupName>
+    <GroupName>src</GroupName>
     <tvExp>1</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
@@ -232,8 +232,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\common\src\delay.c</PathWithFileName>
-      <FilenameWithoutPath>delay.c</FilenameWithoutPath>
+      <PathWithFileName>..\common\src\LCD_4bit.c</PathWithFileName>
+      <FilenameWithoutPath>LCD_4bit.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -244,73 +244,22 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\common\src\LCD_4bit.c</PathWithFileName>
-      <FilenameWithoutPath>LCD_4bit.c</FilenameWithoutPath>
-      <RteFlg>0</RteFlg>
-      <bShared>0</bShared>
-    </File>
-    <File>
-      <GroupNumber>1</GroupNumber>
-      <FileNumber>4</FileNumber>
-      <FileType>1</FileType>
-      <tvExp>0</tvExp>
-      <tvExpOptDlg>0</tvExpOptDlg>
-      <bDave2>0</bDave2>
-
-      <PathWithFileName>.\src\queue.c</PathWithFileName>
-      <FilenameWithoutPath>queue.c</FilenameWithoutPath>
-
       <PathWithFileName>.\src\switches.c</PathWithFileName>
       <FilenameWithoutPath>switches.c</FilenameWithoutPath>
-
-      <RteFlg>0</RteFlg>
-      <bShared>0</bShared>
-    </File>
-    <File>
-      <GroupNumber>1</GroupNumber>
-      <FileNumber>5</FileNumber>
-      <FileType>1</FileType>
-      <tvExp>0</tvExp>
-      <tvExpOptDlg>0</tvExpOptDlg>
-      <bDave2>0</bDave2>
-
-      <PathWithFileName>.\src\switches.c</PathWithFileName>
-      <FilenameWithoutPath>switches.c</FilenameWithoutPath>
-
-      <PathWithFileName>..\common\src\uart.c</PathWithFileName>
-      <FilenameWithoutPath>uart.c</FilenameWithoutPath>
-
-      <RteFlg>0</RteFlg>
-      <bShared>0</bShared>
-    </File>
-    <File>
-      <GroupNumber>1</GroupNumber>
-      <FileNumber>6</FileNumber>
-      <FileType>1</FileType>
-      <tvExp>0</tvExp>
-      <tvExpOptDlg>0</tvExpOptDlg>
-      <bDave2>0</bDave2>
-
-      <PathWithFileName>..\common\src\uart.c</PathWithFileName>
-      <FilenameWithoutPath>uart.c</FilenameWithoutPath>
-
-      <PathWithFileName>..\common\src\queue.c</PathWithFileName>
-      <FilenameWithoutPath>queue.c</FilenameWithoutPath>
-
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
   </Group>
 
   <Group>
-    <GroupName>Include Files</GroupName>
+    <GroupName>inc</GroupName>
     <tvExp>1</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>
     <File>
       <GroupNumber>2</GroupNumber>
-      <FileNumber>7</FileNumber>
+      <FileNumber>4</FileNumber>
       <FileType>5</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
@@ -322,7 +271,7 @@
     </File>
     <File>
       <GroupNumber>2</GroupNumber>
-      <FileNumber>8</FileNumber>
+      <FileNumber>5</FileNumber>
       <FileType>5</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
@@ -334,64 +283,33 @@
     </File>
     <File>
       <GroupNumber>2</GroupNumber>
-      <FileNumber>9</FileNumber>
+      <FileNumber>6</FileNumber>
       <FileType>5</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\common\inc\delay.h</PathWithFileName>
-      <FilenameWithoutPath>delay.h</FilenameWithoutPath>
-      <RteFlg>0</RteFlg>
-      <bShared>0</bShared>
-    </File>
-    <File>
-      <GroupNumber>2</GroupNumber>
-      <FileNumber>10</FileNumber>
-      <FileType>5</FileType>
-      <tvExp>0</tvExp>
-      <tvExpOptDlg>0</tvExpOptDlg>
-      <bDave2>0</bDave2>
-
-      <PathWithFileName>.\inc\queue.h</PathWithFileName>
-      <FilenameWithoutPath>queue.h</FilenameWithoutPath>
-
       <PathWithFileName>.\inc\switches.h</PathWithFileName>
       <FilenameWithoutPath>switches.h</FilenameWithoutPath>
-
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
+  </Group>
+
+  <Group>
+    <GroupName>lib</GroupName>
+    <tvExp>1</tvExp>
+    <tvExpOptDlg>0</tvExpOptDlg>
+    <cbSel>0</cbSel>
+    <RteFlg>0</RteFlg>
     <File>
-      <GroupNumber>2</GroupNumber>
-      <FileNumber>11</FileNumber>
-      <FileType>5</FileType>
+      <GroupNumber>3</GroupNumber>
+      <FileNumber>7</FileNumber>
+      <FileType>4</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-
-      <PathWithFileName>.\inc\switches.h</PathWithFileName>
-      <FilenameWithoutPath>switches.h</FilenameWithoutPath>
-
-      <PathWithFileName>..\common\inc\uart.h</PathWithFileName>
-      <FilenameWithoutPath>uart.h</FilenameWithoutPath>
-
-      <RteFlg>0</RteFlg>
-      <bShared>0</bShared>
-    </File>
-    <File>
-      <GroupNumber>2</GroupNumber>
-      <FileNumber>12</FileNumber>
-      <FileType>5</FileType>
-      <tvExp>0</tvExp>
-      <tvExpOptDlg>0</tvExpOptDlg>
-      <bDave2>0</bDave2>
-
-      <PathWithFileName>..\common\inc\uart.h</PathWithFileName>
-      <FilenameWithoutPath>uart.h</FilenameWithoutPath>
-
-      <PathWithFileName>..\common\inc\queue.h</PathWithFileName>
-      <FilenameWithoutPath>queue.h</FilenameWithoutPath>
-
+      <PathWithFileName>..\libserial\Objects\libserial.lib</PathWithFileName>
+      <FilenameWithoutPath>libserial.lib</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
