@@ -9,15 +9,15 @@ The setup instructions assume you have an existing project you wish to implement
 
 1. Clone this repository to your computer. (~git clone https://github.com/zachporter1999/SYSC-4907-mini-proj.git~)
 2. Open the library project and build it.
-3. In your existing project, under "/Options for Target 1 >> C/C++ (AC6) >> Include Paths/" add the ralative path to the "/libserial//inc/" diretory
+3. In your existing project, under "~Options for Target 1 >> C/C++ (AC6) >> Include Paths~" add the ralative path to the "~libserial//inc~" diretory
 
 #+CAPTION: Where to set the "/Include Paths/" setting.
 #+NAME: fig:include-setup
 [[./Documentation/out/setup/inc.png]]
 
-4. In the project window at the left side of the Keil IDE, right click on the "/Target 1/" folder and add a new group.
+4. In the project window at the left side of the Keil IDE, right click on the "~Target 1~" folder and add a new group.
 5. Rename this new group/folder to lib.
-6. right click on the "/lib/" folder, add existing item, and add the "/libserial//Objects//libserial.lib/"
+6. right click on the "~lib~" folder, add existing item, and add the "~libserial//Objects//libserial.lib~"
 
 #+CAPTION: Where to create the "/lib/" folder to add the "/.lib/" file to.
 #+NAME: fig:library-setup
