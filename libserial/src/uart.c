@@ -5,6 +5,9 @@
 Q_T TxQ, RxQ;
 uint8_t CR_received = 0;
 
+volatile uart_transceiver_t uart1_transceiver;
+volatile uart_transceiver_t uart2_transceiver;
+
 /*
 uart_transceiver_t Init_UART1(uint32_t baud_rate, size_t data_bytes) {
 	uart_transceiver_t transceiver;
