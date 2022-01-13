@@ -3,7 +3,7 @@
  * Auto generated Run-Time-Environment Configuration File
  *      *** Do not modify ! ***
  *
- * Project: 'BoardB' 
+ * Project: 'agent-test' 
  * Target:  'Target 1' 
  */
 
