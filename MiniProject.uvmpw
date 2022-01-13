@@ -9,6 +9,7 @@
 
   <project>
     <PathAndName>.\libserial\libserial.uvprojx</PathAndName>
+    <NodeIsActive>1</NodeIsActive>
     <NodeIsCheckedInBatchBuild>1</NodeIsCheckedInBatchBuild>
   </project>
 
@@ -19,7 +20,6 @@
 
   <project>
     <PathAndName>.\tests\agent-test\agent-test.uvprojx</PathAndName>
-    <NodeIsActive>1</NodeIsActive>
     <NodeIsCheckedInBatchBuild>1</NodeIsCheckedInBatchBuild>
   </project>
 
