@@ -27,7 +27,7 @@ The Library setup is finished. Now lets setup your existing Keil to link this li
 
 #+CAPTION: Where to set the "/Include Paths/" setting.
 #+NAME: fig:include-setup
-[[./Documentation/out/setup/inc.png]]
+[[./Documentation/out/setup/inc2.png]]
 
 ** Linking the libserial to project
 
