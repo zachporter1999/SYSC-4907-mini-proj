@@ -1,40 +1,40 @@
 
 # Table of Contents
 
-1.  [What is libserial](#org751db20)
-    1.  [Currently Implemented Drivers](#org0aaf07e)
-2.  [Setup Instructions](#org8c82d68)
-    1.  [Setting up the include path](#org3192872)
-    2.  [Linking the library](#orga652994)
+1.  [What is libserial](#org0188ac7)
+    1.  [Currently Implemented Drivers](#org67e50ce)
+2.  [Setup Instructions](#org9bb9da2)
+    1.  [Setting up the include path](#orgbf57cb8)
+    2.  [Linking the library](#org683b9a1)
 
 
 
-<a id="org751db20"></a>
+<a id="org0188ac7"></a>
 
 # What is libserial
 
-Libserial was formerly Team 1&rsquo;s mini project that has now been adapted into a serial communication libray for use in your programs. Libserial provides drivers for the 3 communication protocols availables on the KL25Z. Namely UART, I2C, and SPI. Libserial should allow for easy implementation of these protocols without reinventing the wheel.
+Libserial was formerly Team 1&rsquo;s mini project that has now been adapted into a serial communication libray for use in your programs. Libserial provides drivers for the 3 communication protocols availables on the KL25Z. Namely UART, I2C, and SPI. Libserial should allow for easy implementation of these protocols without the need to reinventi the wheel again.
 
 Libserial is a Keil project that is set to produce a static library instead of an executable. This should allow for easier implementation into your different programs without having to copy files around.
 
 
-<a id="org0aaf07e"></a>
+<a id="org67e50ce"></a>
 
 ## Currently Implemented Drivers
 
--   [ ] UART
+-   [X] UART
 -   [ ] I2C
 -   [ ] SPI
 
 
-<a id="org8c82d68"></a>
+<a id="org9bb9da2"></a>
 
 # Setup Instructions
 
 The setup instructions assume you have an existing project you wish to implement serial communication in.
 
 
-<a id="org3192872"></a>
+<a id="orgbf57cb8"></a>
 
 ## Setting up the include path
 
@@ -45,7 +45,7 @@ The setup instructions assume you have an existing project you wish to implement
 ![img](./Documentation/out/setup/inc.png "Where to set the &ldquo;*Include Paths*&rdquo; setting.")
 
 
-<a id="orga652994"></a>
+<a id="org683b9a1"></a>
 
 ## Linking the library
 

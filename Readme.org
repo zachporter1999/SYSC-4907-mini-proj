@@ -2,12 +2,12 @@
 #+AUTHOR: Zach Porter, Erdem Yanikomerolgu
 
 * What is libserial
-Libserial was formerly Team 1's mini project that has now been adapted into a serial communication libray for use in your programs. Libserial provides drivers for the 3 communication protocols availables on the KL25Z. Namely UART, I2C, and SPI. Libserial should allow for easy implementation of these protocols without reinventing the wheel.
+Libserial was formerly Team 1's mini project that has now been adapted into a serial communication libray for use in your programs. Libserial provides drivers for the 3 communication protocols availables on the KL25Z. Namely UART, I2C, and SPI. Libserial should allow for easy implementation of these protocols without the need to reinventi the wheel again.
 
 Libserial is a Keil project that is set to produce a static library instead of an executable. This should allow for easier implementation into your different programs without having to copy files around.
 
 ** Currently Implemented Drivers
-+ [ ] UART
++ [X] UART
 + [ ] I2C
 + [ ] SPI
 
