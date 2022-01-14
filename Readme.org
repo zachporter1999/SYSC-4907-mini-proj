@@ -14,17 +14,22 @@ Libserial is a Keil project that is set to produce a static library instead of a
 * Setup Instructions
 The setup instructions assume you have an existing project you wish to implement serial communication in.
 
-** Setting up the include path
+** Libserial install and build
 
 1. Clone this repository to your computer. (~git clone https://github.com/zachporter1999/SYSC-4907-mini-proj.git~)
 2. Open the library project and build it.
-3. In your existing project, under "~Options for Target 1 >> C/C++ (AC6) >> Include Paths~" add the ralative path to the "~libserial//inc~" diretory
+
+The Library setup is finished. Now lets setup your existing Keil to link this library in at compile time.
+
+** Setting up the include path to libserial's headers
+
+1. In your existing project, under "~Options for Target 1 >> C/C++ (AC6) >> Include Paths~" add the ralative path to the "~libserial//inc~" diretory
 
 #+CAPTION: Where to set the "/Include Paths/" setting.
 #+NAME: fig:include-setup
 [[./Documentation/out/setup/inc.png]]
 
-** Linking the library
+** Linking the libserial to project
 
 1. In the project window at the left side of the Keil IDE, right click on the "~Target 1~" folder and add a new group.
 2. Rename this new group/folder to lib.
