@@ -41,7 +41,9 @@ typedef struct
  * Args:
  * - baud_rate   : The baud rate the uart port sends/receives at.
  * - data_bytes  : The number of bits to send/receive per message.
- * - transceiver : The config structure for the uart port.
+ *
+ * Return:
+ * - The config structure for the uart port.
 */
 uart_transceiver_t Init_UART1(uint32_t baud_rate, size_t data_bytes);
 uart_transceiver_t Init_UART2(uint32_t baud_rate, size_t data_bytes);
