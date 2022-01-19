@@ -1,6 +1,7 @@
 #include <MKL25Z4.h>
 
 #include "drivers/uart.h"
+#include "delay.h"
 
 // Controls for selecting which tests to run
 #define TEST_UART 1
@@ -11,8 +12,19 @@ int main(void)
 {
 #if TEST_UART
 
-	uart_transceiver_t uart1_transeiver = Init_UART1(9600, sizeof(uint8_t));
-	uart_transceiver_t uart2_transeiver = Init_UART2(115200, sizeof(uint8_t));
+	uart1_init(UART_BAUDRATE_300);
+	//uart1_init(UART_BAUDRATE_9600);
+	
+	char msg[16];
+	sprintf(msg, "a");
+	
+	for (;;)
+	{
+		uart1_send(msg);	
+		//uart1_update();
+		Delay(10);
+	}
+		
 
 #endif
 
