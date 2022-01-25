@@ -12,15 +12,17 @@ Q_T uart2_rxQ;
 
 /* Default config for UART port 1
  * Sets the SCGC clocks, gpio port, and IRQn that will be needed for UART1.
- */
+ */ 
 uart_cfg_t uart1_cfg = {
+	.sim 
 	.uartSCGCMask = SIM_SCGC4_UART1_MASK,
 	.uartPort = UART1,
 	.pinSCGCMask = SIM_SCGC5_PORTE_MASK,
-	.gpioPort = PORTE,
-	.pcrMux = 3,
-	.txPin = 0,
-	.rxPin = 1,
+	.gpioPort = PORTE
+	.gpioPort->PCR[0] = PORT_PCR_MUX(3),
+//	.pcrMux = 3,
+//	.txPin = 0,
+//	.rxPin = 1,
 	.nvic_irq = UART1_IRQn
 };
 
@@ -65,8 +67,8 @@ void __uart_init(
 
 
 	// select UART pins
-	p_cfg->gpioPort->PCR[p_cfg->txPin] = PORT_PCR_MUX(p_cfg->pcrMux);
-	p_cfg->gpioPort->PCR[p_cfg->rxPin] = PORT_PCR_MUX(p_cfg->pcrMux);
+	//p_cfg->gpioPort->PCR[p_cfg->txPin] = PORT_PCR_MUX(p_cfg->pcrMux);
+	//p_cfg->gpioPort->PCR[p_cfg->rxPin] = PORT_PCR_MUX(p_cfg->pcrMux);
 	
 	p_cfg->uartPort->C2 &=  ~(UARTLP_C2_TE_MASK | UARTLP_C2_RE_MASK);
 		
@@ -90,6 +92,16 @@ void __uart_init(
 	p_cfg->uartPort->C2 |= UART_C2_TIE_MASK | UART_C2_RIE_MASK;
 }
 	
+void __uart_start(uart_cfg_t* p_cfg)
+{
+	
+}
+
+void __uart_stop(uart_cfg_t* p_cfg)
+{
+	
+}
+
 /* Generic send function for any UART port
  * Sends data to the transmit queue.
  * 

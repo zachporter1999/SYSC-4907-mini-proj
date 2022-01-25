@@ -16,6 +16,22 @@
  */
 typedef struct
 {
+	SIM_Type* sim;
+	uint32_t uartSCGCMask;
+	UART_Type* uartPort;
+	
+	uint32_t pinSCGCMask;
+	PORT_Type* gpioPort;
+	//uint32_t  pcrMux;
+	
+	//uint32_t txPin;
+	//uint32_t rxPin;
+	
+	unsigned nvic_irq;
+} uart_cfg_t;
+
+typedef struct
+{
 	uint32_t uartSCGCMask;
 	UART_Type* uartPort;
 	
@@ -27,7 +43,7 @@ typedef struct
 	uint32_t rxPin;
 	
 	unsigned nvic_irq;
-} uart_cfg_t;
+} uart_cfg2_t;
 
 /* Predefined transmit and receive queue for
  * the UART ports.
