@@ -421,7 +421,7 @@
                   <PublicsOnly>2</PublicsOnly>
                   <StopOnExitCode>11</StopOnExitCode>
                   <CustomArgument></CustomArgument>
-                  <IncludeLibraryModules>delay.o|1|0|0|0,queue.o|1|0|0|0,uart.o|1|0|0|0</IncludeLibraryModules>
+                  <IncludeLibraryModules>delay.o|1|0|0|0,queue.o|1|0|0|0,i2c.o|1|0|0|0,spi.o|1|0|0|0,uart.o|1|0|0|0</IncludeLibraryModules>
                   <ComprImg>1</ComprImg>
                 </CommonProperty>
                 <FileArmAds/>

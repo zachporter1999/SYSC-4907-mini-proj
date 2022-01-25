@@ -10,12 +10,9 @@
 
 int main(void)
 {
-#if TEST_UART
-
+#if TEST_UART	
 	//UART1_INIT(UART_BAUDRATE_300, 128);
 	UART1_INIT(UART_BAUDRATE_9600, 128);
-	//uart1_init(UART_BAUDRATE_300, 128);
-	//uart1_init(UART_BAUDRATE_9600, 128);
 	
 	char msg[16];
 	sprintf(msg, "a");
@@ -23,8 +20,6 @@ int main(void)
 	for (;;)
 	{
 		UART1_SEND(msg);
-		//uart1_send(msg);	
-		//uart1_update();
 		Delay(10);
 	}
 		

@@ -22,6 +22,7 @@
 
   <project>
     <PathAndName>.\tests\agent-test\agent-test.uvprojx</PathAndName>
+    <NodeIsExpanded>1</NodeIsExpanded>
     <NodeIsCheckedInBatchBuild>1</NodeIsCheckedInBatchBuild>
   </project>
 
