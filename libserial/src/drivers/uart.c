@@ -5,24 +5,26 @@
 #define UART_OVERSAMPLE (16)
 #define BUS_CLOCK 		(24e6)
 
+
 Q_T uart1_txQ;
 Q_T uart1_rxQ;
 Q_T uart2_txQ;
 Q_T uart2_rxQ;
 
+volatile uint32_t messages_received_uart1 = 0;
+volatile uint32_t messages_received_uart2 = 0;
+
 /* Default config for UART port 1
  * Sets the SCGC clocks, gpio port, and IRQn that will be needed for UART1.
  */ 
 uart_cfg_t uart1_cfg = {
-	.sim 
 	.uartSCGCMask = SIM_SCGC4_UART1_MASK,
 	.uartPort = UART1,
 	.pinSCGCMask = SIM_SCGC5_PORTE_MASK,
-	.gpioPort = PORTE
-	.gpioPort->PCR[0] = PORT_PCR_MUX(3),
-//	.pcrMux = 3,
-//	.txPin = 0,
-//	.rxPin = 1,
+	.gpioPort = PORTE,
+	.pcrMux = 3,
+	.txPin = 0,
+	.rxPin = 1,
 	.nvic_irq = UART1_IRQn
 };
 
@@ -92,13 +94,29 @@ void __uart_init(
 	p_cfg->uartPort->C2 |= UART_C2_TIE_MASK | UART_C2_RIE_MASK;
 }
 	
-void __uart_start(uart_cfg_t* p_cfg)
+void __uart_start_tx(uart_cfg_t* p_cfg)
 {
+	// Enable transmitter and receiver but not interrupts
+	p_cfg->uartPort->C2 = (uint32_t)UART_C2_TE_MASK;
+}
+
+void __uart_start_rx(uart_cfg_t* p_cfg)
+{
+	// Enable transmitter and receiver but not interrupts
+	p_cfg->uartPort->C2 = (uint32_t)UART_C2_RE_MASK;
+}
+
+void __uart_stop_tx(uart_cfg_t* p_cfg)
+{
+	// Enable transmitter and receiver but not interrupts
+	p_cfg->uartPort->C2 &= ~(uint32_t)UART_C2_TE_MASK;
 	
 }
 
-void __uart_stop(uart_cfg_t* p_cfg)
+void __uart_stop_rx(uart_cfg_t* p_cfg)
 {
+	// Enable transmitter and receiver but not interrupts
+	p_cfg->uartPort->C2 &= ~(uint32_t)UART_C2_RE_MASK;
 	
 }
 
@@ -109,14 +127,16 @@ void __uart_stop(uart_cfg_t* p_cfg)
  * - p_txQ : The transmit queue for the uart port.
  * - msg   : The message to be sent.
  */
-void __uart_send(Q_T* p_tx_q, char* send_msg)
+int __uart_send(Q_T* p_tx_q, char* send_msg)
 {
 	for (char* curr_char = send_msg;
 		 *curr_char != NULL;
 		 curr_char++)
 	{
-		// Wait while Queue is full.
-		while(Q_Full(p_tx_q));
+		if (Q_Full(p_tx_q))
+		{
+			return -1;
+		}
 		Q_Enqueue(p_tx_q, (uint8_t)*curr_char);
 	}
 	Q_Enqueue(p_tx_q, (uint8_t)NULL);
@@ -126,6 +146,7 @@ void __uart_send(Q_T* p_tx_q, char* send_msg)
 	if (!(UART1->C2 & UART_C2_TIE_MASK)) {
 		UART1->C2 |= UART_C2_TIE_MASK;
 	}
+	return 0;
 }
 
 /* Generic read function for any UART port
@@ -135,17 +156,21 @@ void __uart_send(Q_T* p_tx_q, char* send_msg)
  * - p_rxQ : The recieve queue for the uart port.
  * - msg   : The message that is read.
  */
-void __uart_read(Q_T* p_rx_q, char* received_msg)
+int __uart_read(Q_T* p_rx_q, int* messages_received, char* received_msg)
 {
 	for (char new_char = (char)Q_Dequeue(p_rx_q);
 		new_char != NULL;
 		new_char = (char)Q_Dequeue(p_rx_q))
 	{
-		// Wait while Queue is empty.
-		while (Q_Empty(p_rx_q));
+		if (Q_Empty(p_rx_q) && *messages_received > 0)
+		{
+			return -1;
+		}
 		*received_msg++ = new_char;
 	}
 	*received_msg = (char)NULL;
+	(*messages_received)--;
+	return 0;
 }
 
 // NOTE Implementing observer pattern
@@ -167,8 +192,8 @@ void UART1_IRQHandler(void) {
 		if (!Q_Full(&uart1_rxQ)) {
 			c = UART1->D;
 			Q_Enqueue(&uart1_rxQ, c);
-			if (c == '\r') {
-				//CR_received++;
+			if (c == NULL) {
+				messages_received_uart1++;
 			}
 		} else {
 			// error - queue full.
@@ -204,8 +229,8 @@ void UART2_IRQHandler(void) {
 		if (!Q_Full(&uart2_rxQ)) {
 			c = UART2->D;
 			Q_Enqueue(&uart2_rxQ, c);
-			if (c == '\r') {
-				//CR_received++;
+			if (c == NULL) {
+				messages_received_uart2++;
 			}
 		} else {
 			// error - queue full.
