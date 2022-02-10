@@ -1,6 +1,7 @@
 #include <MKL25Z4.h>
 
 #include "drivers/uart.h"
+#include "delay.h"
 
 // Controls for selecting which tests to run
 #define TEST_UART 1
@@ -11,7 +12,15 @@ int main(void)
 {
 #if TEST_UART
 
-	Init_UART1(9600, sizeof(uint8_t), NULL);
+	UART1_INIT(9600, 128);
+	char msg[16];
+	
+	for (;;)
+	{
+		UART1_READ(msg);
+		
+		Delay(25);
+	}
 
 #endif
 

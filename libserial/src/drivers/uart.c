@@ -1,5 +1,6 @@
 #include "drivers/uart.h"
 #include <stdint.h>
+#include <string.h>
 
 // definitions for use in this header. 
 #define UART_OVERSAMPLE (16)
@@ -69,8 +70,8 @@ void __uart_init(
 
 
 	// select UART pins
-	//p_cfg->gpioPort->PCR[p_cfg->txPin] = PORT_PCR_MUX(p_cfg->pcrMux);
-	//p_cfg->gpioPort->PCR[p_cfg->rxPin] = PORT_PCR_MUX(p_cfg->pcrMux);
+	p_cfg->gpioPort->PCR[p_cfg->txPin] = PORT_PCR_MUX(p_cfg->pcrMux);
+	p_cfg->gpioPort->PCR[p_cfg->rxPin] = PORT_PCR_MUX(p_cfg->pcrMux);
 	
 	p_cfg->uartPort->C2 &=  ~(UARTLP_C2_TE_MASK | UARTLP_C2_RE_MASK);
 		
@@ -93,17 +94,17 @@ void __uart_init(
 
 	p_cfg->uartPort->C2 |= UART_C2_TIE_MASK | UART_C2_RIE_MASK;
 }
-	
+
 void __uart_start_tx(uart_cfg_t* p_cfg)
 {
 	// Enable transmitter and receiver but not interrupts
-	p_cfg->uartPort->C2 = (uint32_t)UART_C2_TE_MASK;
+	p_cfg->uartPort->C2 |= (uint32_t)UART_C2_TE_MASK;
 }
 
 void __uart_start_rx(uart_cfg_t* p_cfg)
 {
 	// Enable transmitter and receiver but not interrupts
-	p_cfg->uartPort->C2 = (uint32_t)UART_C2_RE_MASK;
+	p_cfg->uartPort->C2 |= (uint32_t)UART_C2_RE_MASK;
 }
 
 void __uart_stop_tx(uart_cfg_t* p_cfg)
@@ -127,7 +128,7 @@ void __uart_stop_rx(uart_cfg_t* p_cfg)
  * - p_txQ : The transmit queue for the uart port.
  * - msg   : The message to be sent.
  */
-int __uart_send(Q_T* p_tx_q, char* send_msg)
+int __uart_send(uart_cfg_t *p_cfg, Q_T* p_tx_q, char* send_msg)
 {
 	for (char* curr_char = send_msg;
 		 *curr_char != NULL;
@@ -143,8 +144,8 @@ int __uart_send(Q_T* p_tx_q, char* send_msg)
 	
 	
 	// Start transmitter if it isn't already running
-	if (!(UART1->C2 & UART_C2_TIE_MASK)) {
-		UART1->C2 |= UART_C2_TIE_MASK;
+	if (!(p_cfg->uartPort->C2 & UART_C2_TIE_MASK)) {
+		p_cfg->uartPort->C2 |= UART_C2_TIE_MASK;
 	}
 	return 0;
 }
@@ -166,10 +167,10 @@ int __uart_read(Q_T* p_rx_q, int* messages_received, char* received_msg)
 		{
 			return -1;
 		}
-		*received_msg++ = new_char;
+		strcat(received_msg, &new_char);
 	}
-	*received_msg = (char)NULL;
 	(*messages_received)--;
+
 	return 0;
 }
 
@@ -197,8 +198,10 @@ void UART1_IRQHandler(void) {
 			}
 		} else {
 			// error - queue full.
-			while (1)
-				;
+			//while (1)
+			//	;
+			// queue is empty so disable transmitter
+			UART1->C2 &= ~UART_C2_RIE_MASK;
 		}
 	}
 	if (UART1->S1 & (UART_S1_OR_MASK |UART_S1_NF_MASK | 

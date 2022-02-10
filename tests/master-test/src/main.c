@@ -20,7 +20,8 @@ int main(void)
 	for (;;)
 	{
 		UART1_SEND(msg);
-		Delay(10);
+		
+		Delay(25);
 	}
 		
 
