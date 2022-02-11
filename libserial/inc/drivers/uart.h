@@ -64,7 +64,7 @@ extern uart_cfg_t uart2_cfg;
 #define UART1_STOP_RX()                      __uart_stop_rx(&uart1_cfg)
 #define UART1_SEND(msg)                      __uart_send (&uart1_cfg, &uart1_txQ, msg)
 // NOTE the msg in the read macro is a char array and is passed by referance.
-#define UART1_READ(msg)                      __uart_read (&uart1_rxQ, messages_received_uart1, msg)
+#define UART1_READ(msg)                      __uart_read (&uart1_rxQ, msg)
 
 #define UART2_INIT(baud_rate, nvic_priority) __uart_init(&uart2_cfg, &uart2_txQ, &uart2_rxQ, baud_rate, nvic_priority)
 #define UART2_START_TX()                     __uart_start_tx(&uart2_cfg)
@@ -73,7 +73,7 @@ extern uart_cfg_t uart2_cfg;
 #define UART2_STOP_RX()                      __uart_stop_rx(&uart2_cfg)
 #define UART2_SEND(msg)                      __uart_send (&uart2_cfg, &uart2_txQ, msg)
 // NOTE the msg in the read macro is a char array and is passed by referance.
-#define UART2_READ(msg)                      __uart_read (&uart2_rxQ, messages_received_uart2, msg)
+#define UART2_READ(msg)                      __uart_read (&uart2_rxQ, msg)
 
 /* Gerneral functions for interacting with the UART ports.
  * 
@@ -85,6 +85,6 @@ void __uart_start_rx(uart_cfg_t* p_cfg);
 void __uart_stop_tx(uart_cfg_t* p_cfg);
 void __uart_stop_rx(uart_cfg_t* p_cfg);
 int __uart_send(uart_cfg_t *p_cfg, Q_T* p_tx_q, char* send_msg);
-int __uart_read(Q_T* p_rx_q, int* messages_received, char* received_msg);
+int __uart_read(Q_T* p_rx_q, char* received_msg);
 
 #endif

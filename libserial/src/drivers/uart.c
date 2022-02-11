@@ -12,9 +12,6 @@ Q_T uart1_rxQ;
 Q_T uart2_txQ;
 Q_T uart2_rxQ;
 
-volatile uint32_t messages_received_uart1 = 0;
-volatile uint32_t messages_received_uart2 = 0;
-
 /* Default config for UART port 1
  * Sets the SCGC clocks, gpio port, and IRQn that will be needed for UART1.
  */ 
@@ -157,20 +154,21 @@ int __uart_send(uart_cfg_t *p_cfg, Q_T* p_tx_q, char* send_msg)
  * - p_rxQ : The recieve queue for the uart port.
  * - msg   : The message that is read.
  */
-int __uart_read(Q_T* p_rx_q, int* messages_received, char* received_msg)
+int __uart_read(Q_T* p_rx_q, char* received_msg)
 {
-	for (char new_char = (char)Q_Dequeue(p_rx_q);
-		new_char != NULL;
-		new_char = (char)Q_Dequeue(p_rx_q))
+	char buffer[16] = "";
+	
+	char new_char = (char)Q_Dequeue(p_rx_q);
+	while(new_char != NULL)
 	{
-		if (Q_Empty(p_rx_q) && *messages_received > 0)
+		if (!Q_Empty(p_rx_q))
 		{
-			return -1;
+			strncat(buffer, &new_char, 1);
 		}
-		strcat(received_msg, &new_char);
+		new_char = (char)Q_Dequeue(p_rx_q);
 	}
-	(*messages_received)--;
 
+	strcpy(received_msg, buffer);
 	return 0;
 }
 
@@ -193,9 +191,6 @@ void UART1_IRQHandler(void) {
 		if (!Q_Full(&uart1_rxQ)) {
 			c = UART1->D;
 			Q_Enqueue(&uart1_rxQ, c);
-			if (c == NULL) {
-				messages_received_uart1++;
-			}
 		} else {
 			// error - queue full.
 			//while (1)
@@ -232,9 +227,6 @@ void UART2_IRQHandler(void) {
 		if (!Q_Full(&uart2_rxQ)) {
 			c = UART2->D;
 			Q_Enqueue(&uart2_rxQ, c);
-			if (c == NULL) {
-				messages_received_uart2++;
-			}
 		} else {
 			// error - queue full.
 			while (1)

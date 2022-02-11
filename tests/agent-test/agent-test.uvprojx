@@ -328,7 +328,7 @@
             <uC99>0</uC99>
             <uGnu>0</uGnu>
             <useXO>0</useXO>
-            <v6Lang>3</v6Lang>
+            <v6Lang>5</v6Lang>
             <v6LangP>3</v6LangP>
             <vShortEn>1</vShortEn>
             <vShortWch>1</vShortWch>
@@ -388,6 +388,11 @@
               <FileType>1</FileType>
               <FilePath>.\src\main.c</FilePath>
             </File>
+            <File>
+              <FileName>LCD_4bit.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\src\LCD_4bit.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -397,6 +402,11 @@
               <FileName>placeholder.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\placeholder.h</FilePath>
+            </File>
+            <File>
+              <FileName>lcd_4bit.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\inc\lcd_4bit.h</FilePath>
             </File>
           </Files>
         </Group>

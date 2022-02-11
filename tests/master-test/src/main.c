@@ -2,6 +2,7 @@
 
 #include "drivers/uart.h"
 #include "delay.h"
+#include "lcd_4bit.h"
 
 // Controls for selecting which tests to run
 #define TEST_UART 1
@@ -14,12 +15,20 @@ int main(void)
 	//UART1_INIT(UART_BAUDRATE_300, 128);
 	UART1_INIT(UART_BAUDRATE_9600, 128);
 	
-	char msg[16];
-	sprintf(msg, "a");
+	char uart_msg[4];
+	char lcd_msg[16];
 	
+	sprintf(uart_msg, "abc");
+	sprintf(lcd_msg, "Send: %s", uart_msg);
+	
+	Init_LCD();
+		
 	for (;;)
 	{
-		UART1_SEND(msg);
+		Set_Cursor(0, 0);
+		Clear_LCD();
+		UART1_SEND(uart_msg);
+		Print_LCD(lcd_msg);
 		
 		Delay(25);
 	}
