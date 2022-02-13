@@ -13,7 +13,7 @@ int main(void)
 {
 #if TEST_UART
 
-	UART1_INIT(666, 128);
+	UART1_INIT(9600, 128);
 	Init_LCD();
 	
 	char uart_msg[4];
