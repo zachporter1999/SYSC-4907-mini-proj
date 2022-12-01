@@ -13,12 +13,12 @@ typedef struct {
 } Q_T;
 
 
-extern unsigned int Q_Size(Q_T * q);
-extern int Q_Empty(Q_T * q);
-extern int Q_Full(Q_T * q);
-extern int Q_Enqueue(Q_T * q, uint8_t d);
-extern uint8_t Q_Dequeue(Q_T * q);
-extern void Q_Init(Q_T * q);
+unsigned int Q_Size(Q_T * q);
+int Q_Empty(Q_T * q);
+int Q_Full(Q_T * q);
+int Q_Enqueue(Q_T * q, uint8_t d);
+uint8_t Q_Dequeue(Q_T * q);
+void Q_Init(Q_T * q);
 
 #endif // QUEUE_H
 // *******************************ARM University Program Copyright © ARM Ltd 2013*************************************   
