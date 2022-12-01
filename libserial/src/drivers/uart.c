@@ -229,8 +229,10 @@ void UART2_IRQHandler(void) {
 			Q_Enqueue(&uart2_rxQ, c);
 		} else {
 			// error - queue full.
-			while (1)
-				;
+			//while (1)
+			//	;
+			// queue is empty so disable transmitter
+			UART2->C2 &= ~UART_C2_RIE_MASK;
 		}
 	}
 	if (UART2->S1 & (UART_S1_OR_MASK |UART_S1_NF_MASK | 
