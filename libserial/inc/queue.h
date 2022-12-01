@@ -1,7 +1,23 @@
 #ifndef QUEUE_H
 #define QUEUE_H
 
+/**
+ * Debug LED Summary
+ * =================
+ * 
+ * - Queue Full  = Red
+ * - Queue Empty = Green
+ * - Enqueue     = Blue
+ * - Dequeue     = Purple
+ */
+
+#define EN_Q_DBG_LED 1
+
+#if defined(EN_Q_DBG_LED) && EN_Q_DBG_LED
+#include <MKL25Z4.h>
+#else
 #include <stdint.h>
+#endif
 
 #define Q_SIZE (256)
 
